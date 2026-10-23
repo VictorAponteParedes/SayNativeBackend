@@ -16,5 +16,8 @@
   },
   "files": {
     "invalid_type": "O tipo de arquivo especificado não é válido."
+  },
+  "auth": {
+    "invalid_credentials": "Credenciais inválidas. Verifique seu e-mail e senha."
   }
 }
