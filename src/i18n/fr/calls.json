@@ -1,0 +1,5 @@
+{
+  "user_busy": "L'utilisateur est actuellement en ligne dans un autre appel.",
+  "call_not_found": "La session d'appel est introuvable.",
+  "insufficient_balance": "Solde insuffisant pour démarrer l'appel."
+}

@@ -170,7 +170,22 @@ export class UsersService {
       progressPercentage: dto.progressPercentage || 0,
     });
 
-    return await this.userLanguageRepository.save(newLang);
+    return await this.userRepository.save(newLang);
+  }
+
+  async findAll(excludeUserId?: string): Promise<UserEntity[]> {
+    const query = this.userRepository
+      .createQueryBuilder('user')
+      .leftJoinAndSelect('user.avatar', 'avatar')
+      .leftJoinAndSelect('user.userLanguages', 'userLanguages')
+      .orderBy('user.createdAt', 'DESC')
+      .take(50);
+
+    if (excludeUserId && this.isValidUuid(excludeUserId)) {
+      query.where('user.id != :excludeUserId', { excludeUserId });
+    }
+
+    return await query.getMany();
   }
 
   async toggleTeachingMode(

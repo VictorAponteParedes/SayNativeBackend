@@ -19,5 +19,12 @@
   },
   "auth": {
     "invalid_credentials": "Credenciales inválidas. Verifica tu correo y contraseña."
+  },
+  "calls": {
+    "user_busy": "El usuario se encuentra actualmente en otra llamada.",
+    "invalid_receiver_id": "El identificador del receptor no es un UUID válido.",
+    "invalid_call_type": "El tipo de llamada debe ser 'video' o 'audio'.",
+    "rate_must_be_integer": "La tarifa por minuto debe ser un número entero.",
+    "min_rate": "La tarifa por minuto debe ser de al menos 1 moneda."
   }
 }

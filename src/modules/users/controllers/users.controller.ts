@@ -31,6 +31,15 @@ export class UsersController {
     return await this.usersService.create(createUserDto, lang);
   }
 
+  @Get()
+  @ApiOperation({ summary: 'Listar todos los compañeros disponibles' })
+  @SwaggerResponse({ status: 200, type: [UserEntity] })
+  async findAll(
+    @Headers('x-user-id') userId?: string,
+  ): Promise<UserEntity[]> {
+    return await this.usersService.findAll(userId);
+  }
+
   @Get('me')
   @ApiOperation({ summary: 'Obtener mi perfil completo' })
   @SwaggerResponse({ status: 200, type: UserEntity })

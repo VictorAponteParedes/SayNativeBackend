@@ -1,0 +1,5 @@
+{
+  "user_busy": "对方当前正在通话中。",
+  "call_not_found": "未找到通话会话。",
+  "insufficient_balance": "硬币余额不足，无法发起通话。"
+}

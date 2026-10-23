@@ -1,0 +1,5 @@
+{
+  "user_busy": "The user is currently on another call.",
+  "call_not_found": "The call session was not found.",
+  "insufficient_balance": "Insufficient coin balance to initiate the call."
+}

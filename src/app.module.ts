@@ -13,6 +13,7 @@ import { databaseConfig } from './config/database.config';
 import { FilesModule } from './modules/files/files.module';
 import { UsersModule } from './modules/users/users.module';
 import { AuthModule } from './modules/auth/auth.module';
+import { CallsModule } from './modules/calls/calls.module';
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
 
@@ -60,6 +61,7 @@ import { AppService } from './app.service';
     AuthModule,
     FilesModule,
     UsersModule,
+    CallsModule,
   ],
   controllers: [AppController],
   providers: [AppService],

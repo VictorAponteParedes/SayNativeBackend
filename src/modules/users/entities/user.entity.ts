@@ -58,6 +58,9 @@ export class UserEntity {
   @Column({ type: 'smallint', default: 10 })
   learningCostPerMin: number;
 
+  @Column({ type: 'integer', default: 100 })
+  coins: number;
+
   @Column({ type: 'decimal', precision: 3, scale: 2, default: 5.0 })
   rating: number;
 
