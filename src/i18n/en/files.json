@@ -1,0 +1,6 @@
+{
+  "no_file_provided": "No file was provided for upload.",
+  "file_not_found": "The requested file does not exist or has been deleted.",
+  "file_too_large": "The file size exceeds the allowed limit of 10 MB.",
+  "invalid_mime_type": "File format not supported. Only images (JPG, PNG, WebP) or audio (M4A, MP3) are accepted."
+}

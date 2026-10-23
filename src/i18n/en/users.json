@@ -1,0 +1,8 @@
+{
+  "email_already_exists": "An account with this email address already exists.",
+  "user_not_found": "The requested user was not found.",
+  "profile_updated": "Profile updated successfully.",
+  "avatar_updated": "Profile photo updated successfully.",
+  "language_added": "Language successfully added to your profile.",
+  "teaching_mode_updated": "Teaching mode status updated."
+}

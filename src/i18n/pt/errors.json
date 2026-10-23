@@ -1,0 +1,18 @@
+{
+  "users": {
+    "invalid_email": "El formato del correo electrónico no es válido.",
+    "invalid_password": "La contraseña proporcionada no es válida.",
+    "password_min_length": "La contraseña debe tener al menos 8 caracteres.",
+    "password_max_length": "La contraseña no puede exceder los 50 caracteres.",
+    "invalid_name": "El nombre ingresado no es válido.",
+    "name_min_length": "El nombre debe tener al menos 2 caracteres.",
+    "name_max_length": "El nombre no puede exceder los 100 caracteres.",
+    "bio_max_length": "La biografía no puede superar los 300 caracteres.",
+    "invalid_language_code": "El código del idioma no es válido.",
+    "invalid_language_name": "El nombre del idioma no es válido.",
+    "invalid_language_type": "El tipo de idioma debe ser NATIVE o LEARNING."
+  },
+  "files": {
+    "invalid_type": "El tipo de archivo especificado no es válido."
+  }
+}
