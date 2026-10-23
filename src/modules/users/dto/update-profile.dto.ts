@@ -1,5 +1,6 @@
 import {
   IsString,
+  IsEmail,
   MinLength,
   MaxLength,
   IsOptional,
@@ -14,6 +15,11 @@ export class UpdateProfileDto {
   @MaxLength(100, { message: 'errors.users.name_max_length' })
   @IsOptional()
   fullName?: string;
+
+  @ApiPropertyOptional({ example: 'victor.aponte@saynative.com' })
+  @IsEmail({}, { message: 'errors.users.invalid_email' })
+  @IsOptional()
+  email?: string;
 
   @ApiPropertyOptional({ example: '+34 612 345 678' })
   @IsString()
