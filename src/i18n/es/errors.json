@@ -16,5 +16,8 @@
   },
   "files": {
     "invalid_type": "El tipo de archivo especificado no es válido."
+  },
+  "auth": {
+    "invalid_credentials": "Credenciales inválidas. Verifica tu correo y contraseña."
   }
 }

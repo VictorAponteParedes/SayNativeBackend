@@ -5,7 +5,6 @@ import { EventEmitterModule } from '@nestjs/event-emitter';
 import {
   I18nModule,
   AcceptLanguageResolver,
-  HeaderResolver,
   QueryResolver,
 } from 'nestjs-i18n';
 import * as path from 'path';
@@ -13,6 +12,7 @@ import * as path from 'path';
 import { databaseConfig } from './config/database.config';
 import { FilesModule } from './modules/files/files.module';
 import { UsersModule } from './modules/users/users.module';
+import { AuthModule } from './modules/auth/auth.module';
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
 
@@ -51,13 +51,13 @@ import { AppService } from './app.service';
         watch: true,
       },
       resolvers: [
-        new HeaderResolver(['accept-language']),
         AcceptLanguageResolver,
         new QueryResolver(['lang']),
       ],
     }),
 
     // Módulos de Negocio
+    AuthModule,
     FilesModule,
     UsersModule,
   ],
