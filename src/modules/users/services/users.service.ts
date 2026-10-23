@@ -82,7 +82,17 @@ export class UsersService {
     return await this.findById(savedUser.id, lang);
   }
 
+  private isValidUuid(id: string): boolean {
+    return /^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$/i.test(id);
+  }
+
   async findById(id: string, lang = 'es'): Promise<UserEntity> {
+    if (!id || !this.isValidUuid(id)) {
+      throw new NotFoundException(
+        await this.i18n.t('users.user_not_found', { lang })
+      );
+    }
+
     const user = await this.userRepository.findOne({
       where: { id },
       relations: {
