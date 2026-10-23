@@ -1,8 +1,8 @@
 {
-  "email_already_exists": "Ya existe una cuenta registrada con este correo electrónico.",
-  "user_not_found": "El usuario no fue encontrado en el sistema.",
-  "profile_updated": "Perfil actualizado con éxito.",
-  "avatar_updated": "Foto de perfil actualizada con éxito.",
-  "language_added": "Idioma agregado con éxito a tu perfil.",
-  "teaching_mode_updated": "Estado del Modo Enseñar actualizado."
+  "email_already_exists": "Já existe uma conta cadastrada com este e-mail.",
+  "user_not_found": "O usuário não foi encontrado no sistema.",
+  "profile_updated": "Perfil atualizado com sucesso.",
+  "avatar_updated": "Foto de perfil atualizada com sucesso.",
+  "language_added": "Idioma adicionado com sucesso ao seu perfil.",
+  "teaching_mode_updated": "Status do Modo Ensinar atualizado com sucesso."
 }

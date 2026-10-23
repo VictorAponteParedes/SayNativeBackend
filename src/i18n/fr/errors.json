@@ -1,18 +1,20 @@
 {
   "users": {
-    "invalid_email": "El formato del correo electrónico no es válido.",
-    "invalid_password": "La contraseña proporcionada no es válida.",
-    "password_min_length": "La contraseña debe tener al menos 8 caracteres.",
-    "password_max_length": "La contraseña no puede exceder los 50 caracteres.",
-    "invalid_name": "El nombre ingresado no es válido.",
-    "name_min_length": "El nombre debe tener al menos 2 caracteres.",
-    "name_max_length": "El nombre no puede exceder los 100 caracteres.",
-    "bio_max_length": "La biografía no puede superar los 300 caracteres.",
-    "invalid_language_code": "El código del idioma no es válido.",
-    "invalid_language_name": "El nombre del idioma no es válido.",
-    "invalid_language_type": "El tipo de idioma debe ser NATIVE o LEARNING."
+    "invalid_email": "Le format de l'adresse e-mail n'est pas valide.",
+    "invalid_password": "Le mot de passe fourni n'est pas valide.",
+    "password_min_length": "Le mot de passe doit comporter au moins 8 caractères.",
+    "password_max_length": "Le mot de passe ne peut pas dépasser 50 caractères.",
+    "invalid_name": "Le nom saisi n'est pas valide.",
+    "name_min_length": "Le nom doit comporter au moins 2 caractères.",
+    "name_max_length": "Le nom ne peut pas dépasser 100 caractères.",
+    "bio_max_length": "La biographie ne peut pas dépasser 300 caractères.",
+    "invalid_language_code": "Le code de langue n'est pas valide.",
+    "invalid_language_name": "Le nom de la langue n'est pas valide.",
+    "invalid_language_type": "Le type de langue doit être NATIVE ou LEARNING.",
+    "terms_must_be_accepted": "Vous devez accepter les Conditions d'utilisation et la Politique de confidentialité pour vous inscrire.",
+    "terms_must_be_boolean": "L'acceptation des conditions doit être une valeur booléenne."
   },
   "files": {
-    "invalid_type": "El tipo de archivo especificado no es válido."
+    "invalid_type": "Le type de fichier spécifié n'est pas valide."
   }
 }

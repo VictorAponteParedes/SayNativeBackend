@@ -1,18 +1,20 @@
 {
   "users": {
-    "invalid_email": "El formato del correo electrónico no es válido.",
-    "invalid_password": "La contraseña proporcionada no es válida.",
-    "password_min_length": "La contraseña debe tener al menos 8 caracteres.",
-    "password_max_length": "La contraseña no puede exceder los 50 caracteres.",
-    "invalid_name": "El nombre ingresado no es válido.",
-    "name_min_length": "El nombre debe tener al menos 2 caracteres.",
-    "name_max_length": "El nombre no puede exceder los 100 caracteres.",
-    "bio_max_length": "La biografía no puede superar los 300 caracteres.",
-    "invalid_language_code": "El código del idioma no es válido.",
-    "invalid_language_name": "El nombre del idioma no es válido.",
-    "invalid_language_type": "El tipo de idioma debe ser NATIVE o LEARNING."
+    "invalid_email": "電子郵件格式無效。",
+    "invalid_password": "提供的密碼無效。",
+    "password_min_length": "密碼長度必須至少為 8 個字元。",
+    "password_max_length": "密碼長度不能超過 50 個字元。",
+    "invalid_name": "輸入的姓名無效。",
+    "name_min_length": "姓名長度必須至少為 2 個字元。",
+    "name_max_length": "姓名長度不能超過 100 個字元。",
+    "bio_max_length": "個人簡介不能超過 300 個字元。",
+    "invalid_language_code": "語言代碼無效。",
+    "invalid_language_name": "語言名稱無效。",
+    "invalid_language_type": "語言類型必須為 NATIVE 或 LEARNING。",
+    "terms_must_be_accepted": "您必須接受服務條款和隱私政策才能註冊。",
+    "terms_must_be_boolean": "接受條款必須為布林值。"
   },
   "files": {
-    "invalid_type": "El tipo de archivo especificado no es válido."
+    "invalid_type": "指定的檔案類型無效。"
   }
 }

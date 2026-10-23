@@ -1,18 +1,20 @@
 {
   "users": {
-    "invalid_email": "El formato del correo electrónico no es válido.",
-    "invalid_password": "La contraseña proporcionada no es válida.",
-    "password_min_length": "La contraseña debe tener al menos 8 caracteres.",
-    "password_max_length": "La contraseña no puede exceder los 50 caracteres.",
-    "invalid_name": "El nombre ingresado no es válido.",
-    "name_min_length": "El nombre debe tener al menos 2 caracteres.",
-    "name_max_length": "El nombre no puede exceder los 100 caracteres.",
-    "bio_max_length": "La biografía no puede superar los 300 caracteres.",
-    "invalid_language_code": "El código del idioma no es válido.",
-    "invalid_language_name": "El nombre del idioma no es válido.",
-    "invalid_language_type": "El tipo de idioma debe ser NATIVE o LEARNING."
+    "invalid_email": "メールアドレスの形式が正しくありません。",
+    "invalid_password": "入力されたパスワードは無効です。",
+    "password_min_length": "パスワードは8文字以上である必要があります。",
+    "password_max_length": "パスワードは50文字以内である必要があります。",
+    "invalid_name": "入力された名前は無効です。",
+    "name_min_length": "名前は2文字以上である必要があります。",
+    "name_max_length": "名前は100文字以内である必要があります。",
+    "bio_max_length": "自己紹介は300文字以内である必要があります。",
+    "invalid_language_code": "言語コードが無効です。",
+    "invalid_language_name": "言語名が無効です。",
+    "invalid_language_type": "言語タイプは NATIVE または LEARNING である必要があります。",
+    "terms_must_be_accepted": "登録するには利用規約とプライバシーポリシーに同意する必要があります。",
+    "terms_must_be_boolean": "利用規約への同意はブール値である必要があります。"
   },
   "files": {
-    "invalid_type": "El tipo de archivo especificado no es válido."
+    "invalid_type": "指定されたファイルタイプは無効です。"
   }
 }

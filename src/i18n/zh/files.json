@@ -1,6 +1,6 @@
 {
-  "no_file_provided": "No se ha proporcionado ningún archivo para subir.",
-  "file_not_found": "El archivo solicitado no existe o ha sido eliminado.",
-  "file_too_large": "El tamaño del archivo supera el límite permitido de 10 MB.",
-  "invalid_mime_type": "Formato de archivo no permitido. Solo se aceptan imágenes (JPG, PNG, WebP) o audios (M4A, MP3)."
+  "no_file_provided": "未提供要上傳的檔案。",
+  "file_not_found": "請求的檔案不存在或已被刪除。",
+  "file_too_large": "檔案大小超過允許的 10 MB 限制。",
+  "invalid_mime_type": "不支援的檔案格式。僅接受圖片（JPG、PNG、WebP）或音訊（M4A、MP3）。"
 }

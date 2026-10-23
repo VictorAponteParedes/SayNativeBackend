@@ -1,8 +1,8 @@
 {
-  "email_already_exists": "Ya existe una cuenta registrada con este correo electrónico.",
-  "user_not_found": "El usuario no fue encontrado en el sistema.",
-  "profile_updated": "Perfil actualizado con éxito.",
-  "avatar_updated": "Foto de perfil actualizada con éxito.",
-  "language_added": "Idioma agregado con éxito a tu perfil.",
-  "teaching_mode_updated": "Estado del Modo Enseñar actualizado."
+  "email_already_exists": "このメールアドレスは既に登録されています。",
+  "user_not_found": "指定されたユーザーが見つかりませんでした。",
+  "profile_updated": "プロフィールが正常に更新されました。",
+  "avatar_updated": "プロフィール写真が正常に更新されました。",
+  "language_added": "言語がプロフィールに正常に追加されました。",
+  "teaching_mode_updated": "ティーチングモードの状態が更新されました。"
 }

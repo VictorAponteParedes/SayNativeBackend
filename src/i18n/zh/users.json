@@ -1,8 +1,8 @@
 {
-  "email_already_exists": "Ya existe una cuenta registrada con este correo electrónico.",
-  "user_not_found": "El usuario no fue encontrado en el sistema.",
-  "profile_updated": "Perfil actualizado con éxito.",
-  "avatar_updated": "Foto de perfil actualizada con éxito.",
-  "language_added": "Idioma agregado con éxito a tu perfil.",
-  "teaching_mode_updated": "Estado del Modo Enseñar actualizado."
+  "email_already_exists": "該電子郵件地址已被註冊。",
+  "user_not_found": "系統中找不到該使用者。",
+  "profile_updated": "個人資料更新成功。",
+  "avatar_updated": "個人頭像更新成功。",
+  "language_added": "語言已成功新增至您的個人資料。",
+  "teaching_mode_updated": "教學模式狀態已更新。"
 }

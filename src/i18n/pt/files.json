@@ -1,6 +1,6 @@
 {
-  "no_file_provided": "No se ha proporcionado ningún archivo para subir.",
-  "file_not_found": "El archivo solicitado no existe o ha sido eliminado.",
-  "file_too_large": "El tamaño del archivo supera el límite permitido de 10 MB.",
-  "invalid_mime_type": "Formato de archivo no permitido. Solo se aceptan imágenes (JPG, PNG, WebP) o audios (M4A, MP3)."
+  "no_file_provided": "Nenhum arquivo foi fornecido para upload.",
+  "file_not_found": "O arquivo solicitado não existe ou foi excluído.",
+  "file_too_large": "O tamanho do arquivo excede o limite permitido de 10 MB.",
+  "invalid_mime_type": "Formato de arquivo não suportado. Apenas imagens (JPG, PNG, WebP) ou áudios (M4A, MP3) são aceitos."
 }

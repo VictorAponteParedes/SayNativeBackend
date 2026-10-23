@@ -1,18 +1,20 @@
 {
   "users": {
-    "invalid_email": "El formato del correo electrónico no es válido.",
-    "invalid_password": "La contraseña proporcionada no es válida.",
-    "password_min_length": "La contraseña debe tener al menos 8 caracteres.",
-    "password_max_length": "La contraseña no puede exceder los 50 caracteres.",
-    "invalid_name": "El nombre ingresado no es válido.",
-    "name_min_length": "El nombre debe tener al menos 2 caracteres.",
-    "name_max_length": "El nombre no puede exceder los 100 caracteres.",
-    "bio_max_length": "La biografía no puede superar los 300 caracteres.",
-    "invalid_language_code": "El código del idioma no es válido.",
-    "invalid_language_name": "El nombre del idioma no es válido.",
-    "invalid_language_type": "El tipo de idioma debe ser NATIVE o LEARNING."
+    "invalid_email": "O formato do e-mail não é válido.",
+    "invalid_password": "A senha fornecida não é válida.",
+    "password_min_length": "A senha deve ter pelo menos 8 caracteres.",
+    "password_max_length": "A senha não pode exceder 50 caracteres.",
+    "invalid_name": "O nome inserido não é válido.",
+    "name_min_length": "O nome deve ter pelo menos 2 caracteres.",
+    "name_max_length": "O nome não pode exceder 100 caracteres.",
+    "bio_max_length": "A biografia não pode exceder 300 caracteres.",
+    "invalid_language_code": "O código do idioma não é válido.",
+    "invalid_language_name": "O nome do idioma não é válido.",
+    "invalid_language_type": "O tipo de idioma deve ser NATIVE ou LEARNING.",
+    "terms_must_be_accepted": "Você deve aceitar os Termos de Serviço e a Política de Privacidade para se cadastrar.",
+    "terms_must_be_boolean": "A aceitação dos termos deve ser um valor booleano."
   },
   "files": {
-    "invalid_type": "El tipo de archivo especificado no es válido."
+    "invalid_type": "O tipo de arquivo especificado não é válido."
   }
 }
