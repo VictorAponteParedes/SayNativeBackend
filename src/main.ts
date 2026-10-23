@@ -29,14 +29,14 @@ async function bootstrap() {
       transformOptions: {
         enableImplicitConversion: true,
       },
-    })
+    }),
   );
 
   // Documentación OpenAPI (Swagger)
   const swaggerConfig = new DocumentBuilder()
     .setTitle('SayNative API')
     .setDescription(
-      'API REST y WebSockets de SayNative - Intercambio de idiomas 1-a-1 en vivo'
+      'API REST y WebSockets de SayNative - Intercambio de idiomas 1-a-1 en vivo',
     )
     .setVersion('1.0.0')
     .addBearerAuth()
@@ -47,8 +47,12 @@ async function bootstrap() {
 
   const port = process.env.PORT ?? 3000;
   await app.listen(port);
-  console.log(`🚀 SayNative Backend corriendo en: http://localhost:${port}/api/v1`);
-  console.log(`📚 Swagger Docs disponible en: http://localhost:${port}/api/docs`);
+  console.log(
+    `🚀 SayNativae Backend corriendo en: http://localhost:${port}/api/v1`,
+  );
+  console.log(
+    `📚 Swagger Docs disponible en: http://localhost:${port}/api/docs`,
+  );
 }
 
 bootstrap();

@@ -4,6 +4,8 @@ import {
   MinLength,
   MaxLength,
   IsOptional,
+  IsBoolean,
+  Equals,
 } from 'class-validator';
 import { ApiProperty } from '@nestjs/swagger';
 
@@ -23,6 +25,23 @@ export class CreateUserDto {
   @MinLength(2, { message: 'errors.users.name_min_length' })
   @MaxLength(100, { message: 'errors.users.name_max_length' })
   fullName: string;
+
+  @ApiProperty({
+    example: true,
+    description: 'Obligatorio aceptar los términos de servicio y privacidad para registrarse',
+  })
+  @IsBoolean({ message: 'errors.users.terms_must_be_boolean' })
+  @Equals(true, { message: 'errors.users.terms_must_be_accepted' })
+  acceptedTerms: boolean;
+
+  @ApiProperty({
+    example: true,
+    required: false,
+    description: 'Aceptación de promociones y recordatorios',
+  })
+  @IsBoolean()
+  @IsOptional()
+  acceptedPromotions?: boolean;
 
   @ApiProperty({ example: 'ES', required: false })
   @IsString()

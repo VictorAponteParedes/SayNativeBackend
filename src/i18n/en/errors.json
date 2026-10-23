@@ -10,7 +10,9 @@
     "bio_max_length": "Bio cannot exceed 300 characters.",
     "invalid_language_code": "Language code is invalid.",
     "invalid_language_name": "Language name is invalid.",
-    "invalid_language_type": "Language type must be either NATIVE or LEARNING."
+    "invalid_language_type": "Language type must be either NATIVE or LEARNING.",
+    "terms_must_be_accepted": "You must accept the Terms of Service and Privacy Policy to register.",
+    "terms_must_be_boolean": "Terms acceptance must be a boolean value."
   },
   "files": {
     "invalid_type": "The specified file type is invalid."

@@ -10,7 +10,9 @@
     "bio_max_length": "La biografía no puede superar los 300 caracteres.",
     "invalid_language_code": "El código del idioma no es válido.",
     "invalid_language_name": "El nombre del idioma no es válido.",
-    "invalid_language_type": "El tipo de idioma debe ser NATIVE o LEARNING."
+    "invalid_language_type": "El tipo de idioma debe ser NATIVE o LEARNING.",
+    "terms_must_be_accepted": "Debes aceptar los Términos de Servicio y la Política de Privacidad para registrarte.",
+    "terms_must_be_boolean": "La aceptación de términos debe ser un valor booleano."
   },
   "files": {
     "invalid_type": "El tipo de archivo especificado no es válido."

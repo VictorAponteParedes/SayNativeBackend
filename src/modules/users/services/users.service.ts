@@ -49,6 +49,9 @@ export class UsersService {
       fullName: createUserDto.fullName,
       countryCode: createUserDto.countryCode || 'ES',
       countryFlag: createUserDto.countryFlag || '🇪🇸',
+      acceptedTerms: createUserDto.acceptedTerms,
+      termsAcceptedAt: createUserDto.acceptedTerms ? new Date() : null,
+      acceptedPromotions: createUserDto.acceptedPromotions ?? false,
     });
 
     const savedUser = await this.userRepository.save(user);
