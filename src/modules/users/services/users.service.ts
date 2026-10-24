@@ -47,6 +47,7 @@ export class UsersService {
       email: createUserDto.email.toLowerCase(),
       passwordHash,
       fullName: createUserDto.fullName,
+      birthDate: createUserDto.birthDate ? new Date(createUserDto.birthDate) : null,
       countryCode: createUserDto.countryCode || 'ES',
       countryFlag: createUserDto.countryFlag || '🇪🇸',
       acceptedTerms: createUserDto.acceptedTerms,

@@ -33,6 +33,9 @@ export class UserEntity {
   @Column({ type: 'text', nullable: true })
   bio: string | null;
 
+  @Column({ type: 'date', nullable: true })
+  birthDate: Date | string | null;
+
   @Column({ type: 'uuid', nullable: true })
   avatarId: string | null;
 

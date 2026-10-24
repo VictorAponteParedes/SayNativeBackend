@@ -48,6 +48,11 @@ export class CreateUserDto {
   @IsOptional()
   countryCode?: string;
 
+  @ApiProperty({ example: '2000-05-15', required: false, description: 'Fecha de nacimiento' })
+  @IsString()
+  @IsOptional()
+  birthDate?: string;
+
   @ApiProperty({ example: '🇪🇸', required: false })
   @IsString()
   @IsOptional()

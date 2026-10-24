@@ -42,6 +42,11 @@ export class UpdateProfileDto {
   @IsOptional()
   countryFlag?: string;
 
+  @ApiPropertyOptional({ example: '1998-04-20', description: 'Fecha de nacimiento' })
+  @IsString()
+  @IsOptional()
+  birthDate?: string;
+
   @ApiPropertyOptional({ example: true })
   @IsBoolean()
   @IsOptional()
