@@ -1,6 +1,9 @@
 import { NestFactory } from '@nestjs/core';
 import { ValidationPipe } from '@nestjs/common';
 import { DocumentBuilder, SwaggerModule } from '@nestjs/swagger';
+import * as express from 'express';
+import * as fs from 'fs';
+import * as path from 'path';
 import { AppModule } from './app.module';
 import { TransformResponseInterceptor } from './common/interceptors/transform-response.interceptor';
 
@@ -16,6 +19,16 @@ async function bootstrap() {
 
   // Prefijo global de la API
   app.setGlobalPrefix('api/v1');
+
+  // Servir estáticamente la carpeta uploads para acceso directo a imágenes
+  const uploadDir = path.resolve(process.cwd(), 'uploads');
+  if (!fs.existsSync(uploadDir)) {
+    fs.mkdirSync(uploadDir, { recursive: true });
+  }
+  app.use('/uploads', express.static(uploadDir));
+  app.use('/files', express.static(uploadDir));
+  app.use('/api/v1/files', express.static(uploadDir));
+  app.use('/api/v1/uploads', express.static(uploadDir));
 
   // Interceptor global para respuestas uniformes ApiResponse<T>
   app.useGlobalInterceptors(new TransformResponseInterceptor());

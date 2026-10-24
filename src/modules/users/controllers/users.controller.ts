@@ -7,8 +7,13 @@ import {
   Body,
   Headers,
   ParseUUIDPipe,
+  UploadedFile,
+  UseInterceptors,
+  ParseFilePipe,
+  MaxFileSizeValidator,
 } from '@nestjs/common';
-import { ApiTags, ApiOperation, ApiResponse as SwaggerResponse } from '@nestjs/swagger';
+import { FileInterceptor } from '@nestjs/platform-express';
+import { ApiTags, ApiOperation, ApiResponse as SwaggerResponse, ApiConsumes, ApiBody } from '@nestjs/swagger';
 import { UsersService } from '../services/users.service';
 import { CreateUserDto } from '../dto/create-user.dto';
 import { UpdateProfileDto } from '../dto/update-profile.dto';
@@ -60,6 +65,33 @@ export class UsersController {
     @Headers('accept-language') lang = 'es'
   ): Promise<UserEntity> {
     return await this.usersService.updateProfile(userId, updateDto, lang);
+  }
+
+  @Post('me/avatar')
+  @ApiOperation({ summary: 'Subir y actualizar foto de avatar directamente' })
+  @ApiConsumes('multipart/form-data')
+  @ApiBody({
+    schema: {
+      type: 'object',
+      properties: {
+        file: { type: 'string', format: 'binary' },
+      },
+    },
+  })
+  @UseInterceptors(FileInterceptor('file'))
+  async uploadAvatar(
+    @Headers('x-user-id') userId: string,
+    @UploadedFile(
+      new ParseFilePipe({
+        validators: [
+          new MaxFileSizeValidator({ maxSize: 10 * 1024 * 1024 }),
+        ],
+      })
+    )
+    file: Express.Multer.File,
+    @Headers('accept-language') lang = 'es'
+  ): Promise<UserEntity> {
+    return await this.usersService.uploadAndSetAvatar(userId, file, lang);
   }
 
   @Post('me/avatar/:fileId')

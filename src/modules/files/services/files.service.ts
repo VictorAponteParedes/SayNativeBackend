@@ -45,7 +45,7 @@ export class FilesService {
     // Escribir archivo en disco
     await fs.promises.writeFile(destinationPath, file.buffer);
 
-    const relativeUrl = `/files/${uniqueFileName}`;
+    const relativeUrl = `/api/v1/files/${uniqueFileName}`;
 
     const newFile = this.fileRepository.create({
       originalName: file.originalname,

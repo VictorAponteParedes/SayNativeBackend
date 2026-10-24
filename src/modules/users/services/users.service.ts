@@ -17,6 +17,7 @@ import { CreateUserDto } from '../dto/create-user.dto';
 import { UpdateProfileDto } from '../dto/update-profile.dto';
 import { AddLanguageDto } from '../dto/add-language.dto';
 import { FilesService } from '../../files/services/files.service';
+import { FileType } from '../../files/entities/file.entity';
 
 @Injectable()
 export class UsersService {
@@ -151,6 +152,26 @@ export class UsersService {
 
     await this.userRepository.save(user);
     return user;
+  }
+
+  async uploadAndSetAvatar(
+    userId: string,
+    file: Express.Multer.File,
+    lang = 'es'
+  ): Promise<UserEntity> {
+    const user = await this.findById(userId, lang);
+    const savedFile = await this.filesService.saveUploadedFile(
+      file,
+      FileType.AVATAR,
+      userId,
+      lang
+    );
+
+    user.avatarId = savedFile.id;
+    user.avatar = savedFile;
+
+    await this.userRepository.save(user);
+    return await this.findById(userId, lang);
   }
 
   async addLanguage(
