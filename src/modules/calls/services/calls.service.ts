@@ -124,16 +124,18 @@ export class CallsService {
   }
 
   /**
-   * Verifica si un usuario tiene una llamada activa
+   * Verifica si un usuario tiene una llamada activa reciente (últimos 2 minutos)
    */
   async checkIfUserIsBusy(userId: string): Promise<boolean> {
-    const active = await this.callSessionRepository.findOne({
-      where: [
-        { callerId: userId, status: CallSessionStatus.CONNECTED },
-        { receiverId: userId, status: CallSessionStatus.CONNECTED },
-        { receiverId: userId, status: CallSessionStatus.RINGING },
-      ],
-    });
+    const twoMinutesAgo = new Date(Date.now() - 2 * 60 * 1000);
+    const active = await this.callSessionRepository
+      .createQueryBuilder('session')
+      .where('(session.callerId = :userId OR session.receiverId = :userId)', { userId })
+      .andWhere('session.status IN (:...statuses)', {
+        statuses: [CallSessionStatus.CONNECTED, CallSessionStatus.RINGING],
+      })
+      .andWhere('session.createdAt > :twoMinutesAgo', { twoMinutesAgo })
+      .getOne();
 
     return Boolean(active);
   }
