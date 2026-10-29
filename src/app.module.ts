@@ -15,6 +15,7 @@ import { UsersModule } from './modules/users/users.module';
 import { AuthModule } from './modules/auth/auth.module';
 import { CallsModule } from './modules/calls/calls.module';
 import { CoinsModule } from './modules/coins/coins.module';
+import { ChatsModule } from './modules/chats/chats.module';
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
 
@@ -64,6 +65,7 @@ import { AppService } from './app.service';
     UsersModule,
     CallsModule,
     CoinsModule,
+    ChatsModule,
   ],
   controllers: [AppController],
   providers: [AppService],

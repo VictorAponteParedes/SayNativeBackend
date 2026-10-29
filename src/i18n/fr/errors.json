@@ -27,5 +27,14 @@
     "amount_must_be_positive": "Le montant de pièces doit être supérieur à 0.",
     "invalid_reward_type": "Le type de récompense doit être AD_WATCH ou DAILY_BONUS.",
     "insufficient_balance": "Solde de pièces insuffisant."
+  },
+  "chats": {
+    "missing_user_id": "L'en-tête x-user-id est requis.",
+    "invalid_partner_id": "L'identifiant du destinataire n'est pas un UUID valide.",
+    "invalid_room_id": "L'identifiant du salon n'est pas un UUID valide.",
+    "room_not_found": "La conversation n'a pas été trouvée.",
+    "message_empty": "Le contenu du message ne peut pas être vide.",
+    "cannot_chat_with_self": "Vous ne pouvez pas démarrer une conversation avec vous-même.",
+    "unauthorized_access": "Vous n'avez pas accès à cette conversation."
   }
 }

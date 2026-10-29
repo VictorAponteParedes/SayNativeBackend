@@ -27,5 +27,14 @@
     "amount_must_be_positive": "コイン数は 0 より大きい必要があります。",
     "invalid_reward_type": "報酬タイプは AD_WATCH または DAILY_BONUS である必要があります。",
     "insufficient_balance": "コインの残高が不足しています。"
+  },
+  "chats": {
+    "missing_user_id": "x-user-id ヘッダーが必要です。",
+    "invalid_partner_id": "相手の識別子は有効な UUID ではありません。",
+    "invalid_room_id": "チャットルームIDは有効な UUID ではありません。",
+    "room_not_found": "チャットが見つかりませんでした。",
+    "message_empty": "メッセージ内容は空にできません。",
+    "cannot_chat_with_self": "自分自身とチャットを開始することはできません。",
+    "unauthorized_access": "このチャットへのアクセス権がありません。"
   }
 }

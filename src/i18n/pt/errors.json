@@ -27,5 +27,14 @@
     "amount_must_be_positive": "A quantidade de moedas deve ser maior que 0.",
     "invalid_reward_type": "O tipo de recompensa deve ser AD_WATCH ou DAILY_BONUS.",
     "insufficient_balance": "Saldo de moedas insuficiente."
+  },
+  "chats": {
+    "missing_user_id": "O cabeçalho x-user-id é obrigatório.",
+    "invalid_partner_id": "O identificador do parceiro não é um UUID válido.",
+    "invalid_room_id": "O identificador da sala não é um UUID válido.",
+    "room_not_found": "A conversa não foi encontrada.",
+    "message_empty": "O conteúdo da mensagem não pode estar vazio.",
+    "cannot_chat_with_self": "Você não pode iniciar uma conversa consigo mesmo.",
+    "unauthorized_access": "Você não tem acesso a esta conversa."
   }
 }

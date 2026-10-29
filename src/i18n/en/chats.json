@@ -1,0 +1,7 @@
+{
+  "room_created": "Conversation started successfully.",
+  "message_sent": "Message sent successfully.",
+  "messages_marked_read": "Messages marked as read.",
+  "missed_call": "Missed call",
+  "call_ended": "Video call ended"
+}

@@ -24,5 +24,14 @@
     "amount_must_be_positive": "硬幣數量必須大於 0。",
     "invalid_reward_type": "獎勵類型必須為 AD_WATCH 或 DAILY_BONUS。",
     "insufficient_balance": "硬幣餘額不足。"
+  },
+  "chats": {
+    "missing_user_id": "缺少 x-user-id 標頭。",
+    "invalid_partner_id": "對象的 ID 不是有效的 UUID。",
+    "invalid_room_id": "聊天室 ID 不是有效的 UUID。",
+    "room_not_found": "未找到該對話。",
+    "message_empty": "訊息內容不能為空。",
+    "cannot_chat_with_self": "您不能與自己發起對話。",
+    "unauthorized_access": "您無權訪問此對話。"
   }
 }

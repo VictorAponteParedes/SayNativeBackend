@@ -1,0 +1,7 @@
+{
+  "room_created": "チャットルームが正常に作成されました。",
+  "message_sent": "メッセージが正常に送信されました。",
+  "messages_marked_read": "メッセージを既読にしました。",
+  "missed_call": "不在着信",
+  "call_ended": "ビデオ通話終了"
+}

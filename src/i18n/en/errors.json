@@ -27,5 +27,14 @@
     "amount_must_be_positive": "Coin amount must be greater than 0.",
     "invalid_reward_type": "Reward type must be either AD_WATCH or DAILY_BONUS.",
     "insufficient_balance": "Insufficient coin balance."
+  },
+  "chats": {
+    "missing_user_id": "The x-user-id header is required.",
+    "invalid_partner_id": "Recipient ID is not a valid UUID.",
+    "invalid_room_id": "Room ID is not a valid UUID.",
+    "room_not_found": "Conversation was not found.",
+    "message_empty": "Message content cannot be empty.",
+    "cannot_chat_with_self": "You cannot start a conversation with yourself.",
+    "unauthorized_access": "You do not have access to this conversation."
   }
 }
