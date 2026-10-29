@@ -1,0 +1,10 @@
+{
+  "welcome_bonus": "SayNativeへのご登録ウェルカムボーナス",
+  "recharge_package": "パッケージチャージ ({packageId})",
+  "reward_ad": "スポンサー広告視聴報酬 (+{amount})",
+  "daily_bonus": "連続ログインデイリーボーナス",
+  "call_expense": "通話完了 ({minutes} 分)",
+  "call_earning": "チューターセッション報酬 ({minutes} 分)",
+  "recharge_success": "コインのチャージが正常に完了しました。",
+  "reward_claimed": "報酬を正常に受け取りました。"
+}

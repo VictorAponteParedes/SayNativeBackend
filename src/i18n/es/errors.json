@@ -26,5 +26,13 @@
     "invalid_call_type": "El tipo de llamada debe ser 'video' o 'audio'.",
     "rate_must_be_integer": "La tarifa por minuto debe ser un número entero.",
     "min_rate": "La tarifa por minuto debe ser de al menos 1 moneda."
+  },
+  "coins": {
+    "missing_user_id": "El encabezado x-user-id es requerido.",
+    "invalid_package": "Identificador de paquete de monedas no válido.",
+    "amount_must_be_integer": "La cantidad de monedas debe ser un número entero.",
+    "amount_must_be_positive": "La cantidad de monedas debe ser mayor a 0.",
+    "invalid_reward_type": "El tipo de recompensa debe ser AD_WATCH o DAILY_BONUS.",
+    "insufficient_balance": "Saldo insuficiente de monedas."
   }
 }

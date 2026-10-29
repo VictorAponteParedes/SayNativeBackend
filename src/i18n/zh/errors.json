@@ -16,5 +16,13 @@
   },
   "files": {
     "invalid_type": "指定的檔案類型無效。"
+  },
+  "coins": {
+    "missing_user_id": "缺少 x-user-id 標頭。",
+    "invalid_package": "無效的硬幣包識別碼。",
+    "amount_must_be_integer": "硬幣數量必須為整數。",
+    "amount_must_be_positive": "硬幣數量必須大於 0。",
+    "invalid_reward_type": "獎勵類型必須為 AD_WATCH 或 DAILY_BONUS。",
+    "insufficient_balance": "硬幣餘額不足。"
   }
 }

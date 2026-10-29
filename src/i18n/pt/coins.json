@@ -1,0 +1,10 @@
+{
+  "welcome_bonus": "Bônus de boas-vindas por se registrar no SayNative",
+  "recharge_package": "Recarga de pacote ({packageId})",
+  "reward_ad": "Recompensa por assistir a anúncio patrocinado (+{amount})",
+  "daily_bonus": "Bônus diário de sequência consecutiva",
+  "call_expense": "Chamada concluída ({minutes} min)",
+  "call_earning": "Ganhos por sessão de tutoria ({minutes} min)",
+  "recharge_success": "Recarga de moedas concluída com sucesso.",
+  "reward_claimed": "Recompensa resgatada com sucesso."
+}

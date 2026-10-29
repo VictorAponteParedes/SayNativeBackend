@@ -14,6 +14,7 @@ import { FilesModule } from './modules/files/files.module';
 import { UsersModule } from './modules/users/users.module';
 import { AuthModule } from './modules/auth/auth.module';
 import { CallsModule } from './modules/calls/calls.module';
+import { CoinsModule } from './modules/coins/coins.module';
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
 
@@ -62,6 +63,7 @@ import { AppService } from './app.service';
     FilesModule,
     UsersModule,
     CallsModule,
+    CoinsModule,
   ],
   controllers: [AppController],
   providers: [AppService],

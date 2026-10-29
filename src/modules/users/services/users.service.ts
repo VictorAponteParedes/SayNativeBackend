@@ -13,6 +13,13 @@ import {
   LanguageType,
   CefrLevel,
 } from '../entities/user-language.entity';
+import { UserSettingsEntity } from '../entities/user-settings.entity';
+import { UserStatsEntity } from '../entities/user-stats.entity';
+import { WalletEntity } from '../../coins/entities/wallet.entity';
+import {
+  CoinTransactionEntity,
+  TransactionType,
+} from '../../coins/entities/coin-transaction.entity';
 import { CreateUserDto } from '../dto/create-user.dto';
 import { UpdateProfileDto } from '../dto/update-profile.dto';
 import { AddLanguageDto } from '../dto/add-language.dto';
@@ -26,8 +33,16 @@ export class UsersService {
     private readonly userRepository: Repository<UserEntity>,
     @InjectRepository(UserLanguageEntity)
     private readonly userLanguageRepository: Repository<UserLanguageEntity>,
+    @InjectRepository(UserSettingsEntity)
+    private readonly userSettingsRepository: Repository<UserSettingsEntity>,
+    @InjectRepository(UserStatsEntity)
+    private readonly userStatsRepository: Repository<UserStatsEntity>,
+    @InjectRepository(WalletEntity)
+    private readonly walletRepository: Repository<WalletEntity>,
+    @InjectRepository(CoinTransactionEntity)
+    private readonly transactionRepository: Repository<CoinTransactionEntity>,
     private readonly filesService: FilesService,
-    private readonly i18n: I18nService
+    private readonly i18n: I18nService,
   ) {}
 
   async create(createUserDto: CreateUserDto, lang = 'es'): Promise<UserEntity> {
@@ -37,7 +52,7 @@ export class UsersService {
 
     if (existing) {
       throw new ConflictException(
-        await this.i18n.t('users.email_already_exists', { lang })
+        await this.i18n.t('users.email_already_exists', { lang }),
       );
     }
 
@@ -48,15 +63,56 @@ export class UsersService {
       email: createUserDto.email.toLowerCase(),
       passwordHash,
       fullName: createUserDto.fullName,
-      birthDate: createUserDto.birthDate ? new Date(createUserDto.birthDate) : null,
+      birthDate: createUserDto.birthDate
+        ? new Date(createUserDto.birthDate)
+        : null,
       countryCode: createUserDto.countryCode || 'ES',
       countryFlag: createUserDto.countryFlag || '🇪🇸',
-      acceptedTerms: createUserDto.acceptedTerms,
-      termsAcceptedAt: createUserDto.acceptedTerms ? new Date() : null,
-      acceptedPromotions: createUserDto.acceptedPromotions ?? false,
     });
 
     const savedUser = await this.userRepository.save(user);
+    const settings = this.userSettingsRepository.create({
+      userId: savedUser.id,
+      acceptedTerms: createUserDto.acceptedTerms,
+      termsAcceptedAt: createUserDto.acceptedTerms ? new Date() : null,
+      acceptedPromotions: createUserDto.acceptedPromotions ?? false,
+      isAvailableToTeach: false,
+      earningRatePerMin: 7,
+      learningCostPerMin: 10,
+    });
+    await this.userSettingsRepository.save(settings);
+
+    // Inicializar estadísticas en user_stats
+    const stats = this.userStatsRepository.create({
+      userId: savedUser.id,
+      rating: 5.0,
+      totalCalls: 0,
+      hoursPracticed: 0.0,
+      reviewCount: 0,
+    });
+    await this.userStatsRepository.save(stats);
+
+    // Inicializar billetera con bono de bienvenida de 1,000 monedas
+    const wallet = this.walletRepository.create({
+      userId: savedUser.id,
+      balance: 1000,
+    });
+    const savedWallet = await this.walletRepository.save(wallet);
+
+    const welcomeDescription = await this.i18n.t('coins.welcome_bonus', {
+      lang,
+      defaultValue: 'Bono de bienvenida por registrarte en SayNative',
+    });
+
+    const welcomeTx = this.transactionRepository.create({
+      walletId: savedWallet.id,
+      userId: savedUser.id,
+      amount: 1000,
+      type: TransactionType.WELCOME_BONUS,
+      description: welcomeDescription,
+      referenceId: 'welcome-bonus',
+    });
+    await this.transactionRepository.save(welcomeTx);
 
     // Inicializar idioma nativo por defecto
     const nativeLang = this.userLanguageRepository.create({
@@ -85,13 +141,15 @@ export class UsersService {
   }
 
   private isValidUuid(id: string): boolean {
-    return /^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$/i.test(id);
+    return /^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$/i.test(
+      id,
+    );
   }
 
   async findById(id: string, lang = 'es'): Promise<UserEntity> {
     if (!id || !this.isValidUuid(id)) {
       throw new NotFoundException(
-        await this.i18n.t('users.user_not_found', { lang })
+        await this.i18n.t('users.user_not_found', { lang }),
       );
     }
 
@@ -100,12 +158,15 @@ export class UsersService {
       relations: {
         avatar: true,
         userLanguages: true,
+        settings: true,
+        stats: true,
+        wallet: true,
       },
     });
 
     if (!user) {
       throw new NotFoundException(
-        await this.i18n.t('users.user_not_found', { lang })
+        await this.i18n.t('users.user_not_found', { lang }),
       );
     }
 
@@ -115,13 +176,19 @@ export class UsersService {
   async findByEmail(email: string): Promise<UserEntity | null> {
     return await this.userRepository.findOne({
       where: { email: email.toLowerCase() },
+      relations: {
+        avatar: true,
+        userLanguages: true,
+        settings: true,
+        stats: true,
+        wallet: true,
+      },
       select: {
         id: true,
         email: true,
         passwordHash: true,
         fullName: true,
         isVerified: true,
-        isAvailableToTeach: true,
       },
     });
   }
@@ -129,20 +196,35 @@ export class UsersService {
   async updateProfile(
     userId: string,
     updateDto: UpdateProfileDto,
-    lang = 'es'
+    lang = 'es',
   ): Promise<UserEntity> {
     const user = await this.findById(userId, lang);
 
-    Object.assign(user, updateDto);
+    const { isAvailableToTeach, ...userFields } = updateDto;
 
+    Object.assign(user, userFields);
     await this.userRepository.save(user);
+
+    if (isAvailableToTeach !== undefined) {
+      if (user.settings) {
+        user.settings.isAvailableToTeach = isAvailableToTeach;
+        await this.userSettingsRepository.save(user.settings);
+      } else {
+        const newSettings = this.userSettingsRepository.create({
+          userId: user.id,
+          isAvailableToTeach,
+        });
+        await this.userSettingsRepository.save(newSettings);
+      }
+    }
+
     return await this.findById(userId, lang);
   }
 
   async updateAvatar(
     userId: string,
     fileId: string,
-    lang = 'es'
+    lang = 'es',
   ): Promise<UserEntity> {
     const user = await this.findById(userId, lang);
     const file = await this.filesService.getFileById(fileId, lang);
@@ -157,14 +239,14 @@ export class UsersService {
   async uploadAndSetAvatar(
     userId: string,
     file: Express.Multer.File,
-    lang = 'es'
+    lang = 'es',
   ): Promise<UserEntity> {
     const user = await this.findById(userId, lang);
     const savedFile = await this.filesService.saveUploadedFile(
       file,
       FileType.AVATAR,
       userId,
-      lang
+      lang,
     );
 
     user.avatarId = savedFile.id;
@@ -177,7 +259,7 @@ export class UsersService {
   async addLanguage(
     userId: string,
     dto: AddLanguageDto,
-    lang = 'es'
+    lang = 'es',
   ): Promise<UserLanguageEntity> {
     await this.findById(userId, lang);
 
@@ -192,7 +274,7 @@ export class UsersService {
       progressPercentage: dto.progressPercentage || 0,
     });
 
-    return await this.userRepository.save(newLang);
+    return await this.userLanguageRepository.save(newLang);
   }
 
   async findAll(excludeUserId?: string): Promise<UserEntity[]> {
@@ -200,6 +282,9 @@ export class UsersService {
       .createQueryBuilder('user')
       .leftJoinAndSelect('user.avatar', 'avatar')
       .leftJoinAndSelect('user.userLanguages', 'userLanguages')
+      .leftJoinAndSelect('user.settings', 'settings')
+      .leftJoinAndSelect('user.stats', 'stats')
+      .leftJoinAndSelect('user.wallet', 'wallet')
       .orderBy('user.createdAt', 'DESC')
       .take(50);
 
@@ -213,10 +298,19 @@ export class UsersService {
   async toggleTeachingMode(
     userId: string,
     isAvailable: boolean,
-    lang = 'es'
+    lang = 'es',
   ): Promise<UserEntity> {
     const user = await this.findById(userId, lang);
-    user.isAvailableToTeach = isAvailable;
-    return await this.userRepository.save(user);
+    if (user.settings) {
+      user.settings.isAvailableToTeach = isAvailable;
+      await this.userSettingsRepository.save(user.settings);
+    } else {
+      const newSettings = this.userSettingsRepository.create({
+        userId: user.id,
+        isAvailableToTeach: isAvailable,
+      });
+      await this.userSettingsRepository.save(newSettings);
+    }
+    return await this.findById(userId, lang);
   }
 }

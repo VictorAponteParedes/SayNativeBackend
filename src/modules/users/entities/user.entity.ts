@@ -11,6 +11,9 @@ import {
 } from 'typeorm';
 import { FileEntity } from '../../files/entities/file.entity';
 import { UserLanguageEntity } from './user-language.entity';
+import { UserSettingsEntity } from './user-settings.entity';
+import { UserStatsEntity } from './user-stats.entity';
+import { WalletEntity } from '../../coins/entities/wallet.entity';
 
 @Entity('users')
 export class UserEntity {
@@ -52,38 +55,23 @@ export class UserEntity {
   @Column({ type: 'boolean', default: false })
   isVerified: boolean;
 
-  @Column({ type: 'boolean', default: false })
-  isAvailableToTeach: boolean;
+  @OneToOne(() => UserSettingsEntity, (settings) => settings.user, {
+    cascade: true,
+    eager: true,
+  })
+  settings: UserSettingsEntity;
 
-  @Column({ type: 'smallint', default: 7 })
-  earningRatePerMin: number;
+  @OneToOne(() => UserStatsEntity, (stats) => stats.user, {
+    cascade: true,
+    eager: true,
+  })
+  stats: UserStatsEntity;
 
-  @Column({ type: 'smallint', default: 10 })
-  learningCostPerMin: number;
-
-  @Column({ type: 'integer', default: 100 })
-  coins: number;
-
-  @Column({ type: 'decimal', precision: 3, scale: 2, default: 5.0 })
-  rating: number;
-
-  @Column({ type: 'integer', default: 0 })
-  totalCalls: number;
-
-  @Column({ type: 'decimal', precision: 6, scale: 1, default: 0.0 })
-  hoursPracticed: number;
-
-  @Column({ type: 'integer', default: 0 })
-  reviewCount: number;
-
-  @Column({ type: 'boolean', default: false })
-  acceptedTerms: boolean;
-
-  @Column({ type: 'timestamp with time zone', nullable: true })
-  termsAcceptedAt: Date | null;
-
-  @Column({ type: 'boolean', default: false })
-  acceptedPromotions: boolean;
+  @OneToOne(() => WalletEntity, (wallet) => wallet.user, {
+    cascade: true,
+    eager: true,
+  })
+  wallet: WalletEntity;
 
   @OneToMany(() => UserLanguageEntity, (lang) => lang.user, {
     cascade: true,

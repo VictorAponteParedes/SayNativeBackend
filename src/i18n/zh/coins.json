@@ -1,0 +1,10 @@
+{
+  "welcome_bonus": "註冊 SayNative 的迎新獎勵",
+  "recharge_package": "硬幣包充值 ({packageId})",
+  "reward_ad": "觀看贊助廣告獎勵 (+{amount})",
+  "daily_bonus": "連續登入每日獎勵",
+  "call_expense": "通話完成 ({minutes} 分鐘)",
+  "call_earning": "教學輔導收益 ({minutes} 分鐘)",
+  "recharge_success": "硬幣充值成功。",
+  "reward_claimed": "獎勵領取成功。"
+}

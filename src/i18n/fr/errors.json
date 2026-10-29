@@ -19,5 +19,13 @@
   },
   "auth": {
     "invalid_credentials": "Identifiants invalides. Veuillez vérifier votre adresse e-mail et mot de passe."
+  },
+  "coins": {
+    "missing_user_id": "L'en-tête x-user-id est requis.",
+    "invalid_package": "Identifiant de pack de pièces invalide.",
+    "amount_must_be_integer": "Le montant de pièces doit être un entier.",
+    "amount_must_be_positive": "Le montant de pièces doit être supérieur à 0.",
+    "invalid_reward_type": "Le type de récompense doit être AD_WATCH ou DAILY_BONUS.",
+    "insufficient_balance": "Solde de pièces insuffisant."
   }
 }

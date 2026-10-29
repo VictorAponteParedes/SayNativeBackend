@@ -19,5 +19,13 @@
   },
   "auth": {
     "invalid_credentials": "Credenciais inválidas. Verifique seu e-mail e senha."
+  },
+  "coins": {
+    "missing_user_id": "O cabeçalho x-user-id é obrigatório.",
+    "invalid_package": "Identificador de pacote de moedas inválido.",
+    "amount_must_be_integer": "A quantidade de moedas deve ser um número inteiro.",
+    "amount_must_be_positive": "A quantidade de moedas deve ser maior que 0.",
+    "invalid_reward_type": "O tipo de recompensa deve ser AD_WATCH ou DAILY_BONUS.",
+    "insufficient_balance": "Saldo de moedas insuficiente."
   }
 }

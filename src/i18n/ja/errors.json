@@ -19,5 +19,13 @@
   },
   "auth": {
     "invalid_credentials": "認証に失敗しました。メールアドレスとパスワードをご確認ください。"
+  },
+  "coins": {
+    "missing_user_id": "x-user-id ヘッダーが必要です。",
+    "invalid_package": "無効なコインパッケージ識別子です。",
+    "amount_must_be_integer": "コイン数は整数である必要があります。",
+    "amount_must_be_positive": "コイン数は 0 より大きい必要があります。",
+    "invalid_reward_type": "報酬タイプは AD_WATCH または DAILY_BONUS である必要があります。",
+    "insufficient_balance": "コインの残高が不足しています。"
   }
 }

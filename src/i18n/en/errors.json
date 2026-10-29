@@ -19,5 +19,13 @@
   },
   "auth": {
     "invalid_credentials": "Invalid credentials. Please check your email and password."
+  },
+  "coins": {
+    "missing_user_id": "The x-user-id header is required.",
+    "invalid_package": "Invalid coin package identifier.",
+    "amount_must_be_integer": "Coin amount must be an integer.",
+    "amount_must_be_positive": "Coin amount must be greater than 0.",
+    "invalid_reward_type": "Reward type must be either AD_WATCH or DAILY_BONUS.",
+    "insufficient_balance": "Insufficient coin balance."
   }
 }
