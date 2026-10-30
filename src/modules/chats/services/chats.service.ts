@@ -6,6 +6,7 @@ import {
 } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
+import { EventEmitter2 } from '@nestjs/event-emitter';
 import { I18nService } from 'nestjs-i18n';
 import { ChatRoomEntity } from '../entities/chat-room.entity';
 import { ChatMessageEntity, MessageType } from '../entities/chat-message.entity';
@@ -24,7 +25,8 @@ export class ChatsService {
     private readonly messageRepository: Repository<ChatMessageEntity>,
     @InjectRepository(UserEntity)
     private readonly userRepository: Repository<UserEntity>,
-    private readonly i18n: I18nService
+    private readonly i18n: I18nService,
+    private readonly eventEmitter: EventEmitter2,
   ) {}
 
   /**
@@ -244,6 +246,11 @@ export class ChatsService {
     room.lastMessageText = dto.isAudio ? '🎙️ Mensaje de voz' : dto.text.trim();
     room.lastMessageAt = new Date();
     await this.roomRepository.save(room);
+
+    this.eventEmitter.emit('chat.message_sent', {
+      message: savedMessage,
+      room,
+    });
 
     return savedMessage;
   }

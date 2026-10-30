@@ -9,8 +9,11 @@ import {
 } from '@nestjs/websockets';
 import { Server, Socket } from 'socket.io';
 import { Logger } from '@nestjs/common';
+import { OnEvent } from '@nestjs/event-emitter';
 import { ChatsService } from '../services/chats.service';
 import { SendMessageDto } from '../dto/send-message.dto';
+import { ChatMessageEntity } from '../entities/chat-message.entity';
+import { ChatRoomEntity } from '../entities/chat-room.entity';
 
 @WebSocketGateway({
   cors: {
@@ -32,6 +35,18 @@ export class ChatsGateway implements OnGatewayConnection, OnGatewayDisconnect {
 
   handleDisconnect(client: Socket) {
     this.logger.log(`Cliente desconectado del socket de chat: ${client.id}`);
+  }
+
+  @SubscribeMessage('register_user')
+  @SubscribeMessage('chat:register-user')
+  handleRegisterUser(
+    @ConnectedSocket() client: Socket,
+    @MessageBody() data: { userId: string }
+  ) {
+    if (data?.userId) {
+      client.join(`user_${data.userId}`);
+      this.logger.log(`Usuario ${data.userId} registrado en canal personal user_${data.userId}`);
+    }
   }
 
   @SubscribeMessage('join_room')
@@ -68,13 +83,37 @@ export class ChatsGateway implements OnGatewayConnection, OnGatewayDisconnect {
         payload.dto,
         payload.lang || 'es'
       );
-
-      // Emitir mensaje en tiempo real a todos en la sala
-      this.server.to(`room_${message.roomId}`).emit('new_message', message);
       return { success: true, data: message };
     } catch (error: any) {
       this.logger.error(`Error enviando mensaje por websocket: ${error.message}`);
       return { success: false, error: error.message };
+    }
+  }
+
+  /**
+   * Escucha el evento desacoplado emitido por ChatsService (tanto vía HTTP como vía WebSocket)
+   * y retransmite a la sala activa y al canal personal del destinatario
+   */
+  @OnEvent('chat.message_sent')
+  handleChatMessageSent(payload: { message: ChatMessageEntity; room: ChatRoomEntity }) {
+    const { message, room } = payload;
+
+    // 1. Emitir a todos los que estén dentro de la sala de conversación
+    this.server.to(`room_${message.roomId}`).emit('new_message', message);
+
+    // 2. Determinar el destinatario
+    const recipientId =
+      room.participantOneId === message.senderId
+        ? room.participantTwoId
+        : room.participantOneId;
+
+    // 3. Emitir a la sala personal del destinatario para actualizar su BottomTabBar y lista de chats en vivo
+    if (recipientId) {
+      this.server.to(`user_${recipientId}`).emit('new_message', message);
+      this.server.to(`user_${recipientId}`).emit('new_message_notification', {
+        roomId: message.roomId,
+        message,
+      });
     }
   }
 
