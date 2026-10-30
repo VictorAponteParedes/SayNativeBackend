@@ -3,5 +3,17 @@
   "message_sent": "Mensaje enviado con éxito.",
   "messages_marked_read": "Mensajes marcados como leídos.",
   "missed_call": "Llamada perdida",
-  "call_ended": "Videollamada finalizada"
+  "call_ended": "Videollamada finalizada",
+  "filters": {
+    "all_label": "Todos los chats",
+    "all_desc": "Mostrar todas las conversaciones",
+    "unread_label": "Mensajes no leídos",
+    "unread_desc": "Conversaciones con mensajes pendientes",
+    "videocalls_label": "Llamadas y videollamadas",
+    "videocalls_desc": "Historial de llamadas de práctica",
+    "tutors_label": "Tutores nativos",
+    "tutors_desc": "Profesores y tutores verificados",
+    "online_label": "En línea ahora",
+    "online_desc": "Compañeros activos para chatear"
+  }
 }

@@ -1,7 +1,19 @@
 {
-  "room_created": "對話已成功發起。",
-  "message_sent": "訊息已成功發送。",
+  "room_created": "對話發起成功。",
+  "message_sent": "訊息發送成功。",
   "messages_marked_read": "訊息已標記為已讀。",
   "missed_call": "未接來電",
-  "call_ended": "視訊通話結束"
+  "call_ended": "視訊通話結束",
+  "filters": {
+    "all_label": "全部對話",
+    "all_desc": "顯示所有對話列表",
+    "unread_label": "未讀訊息",
+    "unread_desc": "包含未讀訊息的對話",
+    "videocalls_label": "通話與視訊",
+    "videocalls_desc": "語言練習通話記錄",
+    "tutors_label": "母語導師",
+    "tutors_desc": "已認證的教師與導師",
+    "online_label": "目前在線",
+    "online_desc": "隨時可交流的活躍夥伴"
+  }
 }

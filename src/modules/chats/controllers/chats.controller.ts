@@ -29,10 +29,11 @@ export class ChatsController {
   ) {}
 
   @Get()
-  @ApiOperation({ summary: 'Listar todas las conversaciones activas del usuario' })
+  @ApiOperation({ summary: 'Listar todas las conversaciones activas del usuario con filtros' })
   async getConversations(
     @CurrentUser() user?: UserEntity,
     @Headers('x-user-id') userId?: string,
+    @Query('filter') filter?: string,
     @Headers('accept-language') lang = 'es'
   ): Promise<any[]> {
     const targetUserId = user?.id || userId;
@@ -44,7 +45,26 @@ export class ChatsController {
         })
       );
     }
-    return await this.chatsService.getUserConversations(targetUserId, lang);
+    return await this.chatsService.getUserConversations(targetUserId, filter, lang);
+  }
+
+  @Get('filters')
+  @ApiOperation({ summary: 'Obtener las opciones de filtrado de conversaciones (Backend-Driven)' })
+  async getFilterOptions(
+    @CurrentUser() user?: UserEntity,
+    @Headers('x-user-id') userId?: string,
+    @Headers('accept-language') lang = 'es'
+  ) {
+    const targetUserId = user?.id || userId;
+    if (!targetUserId) {
+      throw new BadRequestException(
+        await this.i18n.t('errors.chats.missing_user_id', {
+          lang,
+          defaultValue: 'El encabezado x-user-id es requerido.',
+        })
+      );
+    }
+    return await this.chatsService.getFilterOptions(targetUserId, lang);
   }
 
   @Post('rooms')

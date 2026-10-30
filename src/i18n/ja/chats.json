@@ -1,7 +1,19 @@
 {
-  "room_created": "チャットルームが正常に作成されました。",
-  "message_sent": "メッセージが正常に送信されました。",
-  "messages_marked_read": "メッセージを既読にしました。",
+  "room_created": "チャットが正常に開始されました。",
+  "message_sent": "メッセージが送信されました。",
+  "messages_marked_read": "メッセージが既読になりました。",
   "missed_call": "不在着信",
-  "call_ended": "ビデオ通話終了"
+  "call_ended": "ビデオ通話終了",
+  "filters": {
+    "all_label": "すべてのチャット",
+    "all_desc": "すべての会話を表示",
+    "unread_label": "未読メッセージ",
+    "unread_desc": "未読メッセージのある会話",
+    "videocalls_label": "通話・ビデオ履歴",
+    "videocalls_desc": "練習通話の履歴",
+    "tutors_label": "ネイティブ講師",
+    "tutors_desc": "認証済み講師・チューター",
+    "online_label": "現在オンライン",
+    "online_desc": "今すぐ会話可能な仲間"
+  }
 }

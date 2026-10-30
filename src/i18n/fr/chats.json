@@ -1,7 +1,19 @@
 {
-  "room_created": "Conversation démarrée avec succès.",
+  "room_created": "Conversation commencée avec succès.",
   "message_sent": "Message envoyé avec succès.",
   "messages_marked_read": "Messages marqués comme lus.",
   "missed_call": "Appel manqué",
-  "call_ended": "Appel vidéo terminé"
+  "call_ended": "Appel vidéo terminé",
+  "filters": {
+    "all_label": "Toutes les discussions",
+    "all_desc": "Afficher toutes les conversations",
+    "unread_label": "Messages non lus",
+    "unread_desc": "Conversations avec messages en attente",
+    "videocalls_label": "Appels & Vidéo",
+    "videocalls_desc": "Historique des appels de pratique",
+    "tutors_label": "Tuteurs natifs",
+    "tutors_desc": "Professeurs et tuteurs vérifiés",
+    "online_label": "En ligne actuellement",
+    "online_desc": "Partenaires actifs prêts à discuter"
+  }
 }

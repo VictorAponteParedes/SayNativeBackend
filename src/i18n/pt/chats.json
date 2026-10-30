@@ -3,5 +3,17 @@
   "message_sent": "Mensagem enviada com sucesso.",
   "messages_marked_read": "Mensagens marcadas como lidas.",
   "missed_call": "Chamada perdida",
-  "call_ended": "Chamada de vídeo finalizada"
+  "call_ended": "Chamada de vídeo finalizada",
+  "filters": {
+    "all_label": "Todas as conversas",
+    "all_desc": "Mostrar todas as conversas",
+    "unread_label": "Mensagens não lidas",
+    "unread_desc": "Conversas com mensagens pendentes",
+    "videocalls_label": "Chamadas e vídeo",
+    "videocalls_desc": "Histórico de chamadas de prática",
+    "tutors_label": "Tutores nativos",
+    "tutors_desc": "Professores e tutores verificados",
+    "online_label": "Online agora",
+    "online_desc": "Parceiros ativos para conversar"
+  }
 }

@@ -3,5 +3,17 @@
   "message_sent": "Message sent successfully.",
   "messages_marked_read": "Messages marked as read.",
   "missed_call": "Missed call",
-  "call_ended": "Video call ended"
+  "call_ended": "Videocall ended",
+  "filters": {
+    "all_label": "All chats",
+    "all_desc": "Show all conversations",
+    "unread_label": "Unread messages",
+    "unread_desc": "Conversations with pending messages",
+    "videocalls_label": "Calls & Video calls",
+    "videocalls_desc": "Practice call history",
+    "tutors_label": "Native tutors",
+    "tutors_desc": "Verified teachers and tutors",
+    "online_label": "Online now",
+    "online_desc": "Active peers ready to chat"
+  }
 }
