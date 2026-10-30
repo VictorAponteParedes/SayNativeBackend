@@ -57,6 +57,18 @@ export class ChatsService {
       .getOne();
 
     if (!room) {
+      const partner = await this.userRepository.findOne({
+        where: { id: userTwoId },
+      });
+      if (!partner) {
+        throw new NotFoundException(
+          await this.i18n.t('errors.chats.user_not_found', {
+            lang,
+            defaultValue: 'El usuario con el que deseas chatear no existe.',
+          })
+        );
+      }
+
       room = this.roomRepository.create({
         participantOneId: userOneId,
         participantTwoId: userTwoId,
