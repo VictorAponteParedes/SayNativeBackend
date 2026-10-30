@@ -1,0 +1,6 @@
+{
+  "user_blocked_success": "Utilisateur bloqué avec succès.",
+  "user_already_blocked": "Cet utilisateur est déjà bloqué.",
+  "user_unblocked_success": "Utilisateur débloqué avec succès.",
+  "report_submitted_success": "Signalement envoyé avec succès. Notre équipe de modération l'examinera dans les plus brefs délais."
+}

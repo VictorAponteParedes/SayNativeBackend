@@ -2,6 +2,7 @@ import {
   Injectable,
   NotFoundException,
   BadRequestException,
+  ForbiddenException,
   Logger,
 } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
@@ -16,6 +17,7 @@ import {
 import { CreateRoomDto } from '../dto/create-room.dto';
 import { SendMessageDto } from '../dto/send-message.dto';
 import { UserEntity } from '../../users/entities/user.entity';
+import { ModerationService } from '../../moderation/services/moderation.service';
 
 @Injectable()
 export class ChatsService {
@@ -28,6 +30,7 @@ export class ChatsService {
     private readonly messageRepository: Repository<ChatMessageEntity>,
     @InjectRepository(UserEntity)
     private readonly userRepository: Repository<UserEntity>,
+    private readonly moderationService: ModerationService,
     private readonly i18n: I18nService,
     private readonly eventEmitter: EventEmitter2,
   ) {}
@@ -45,6 +48,16 @@ export class ChatsService {
         await this.i18n.t('errors.chats.cannot_chat_with_self', {
           lang,
           defaultValue: 'No puedes iniciar una conversación contigo mismo.',
+        }),
+      );
+    }
+
+    const hasBlock = await this.moderationService.isBlocked(userOneId, userTwoId);
+    if (hasBlock) {
+      throw new ForbiddenException(
+        await this.i18n.t('errors.chats.user_blocked', {
+          lang,
+          defaultValue: 'No es posible interactuar con este usuario debido a un bloqueo.',
         }),
       );
     }
@@ -329,6 +342,20 @@ export class ChatsService {
         await this.i18n.t('errors.chats.room_not_found', {
           lang,
           defaultValue: 'La conversación no fue encontrada.',
+        }),
+      );
+    }
+
+    const partnerId =
+      room.participantOneId === senderId
+        ? room.participantTwoId
+        : room.participantOneId;
+    const isBlocked = await this.moderationService.isBlocked(senderId, partnerId);
+    if (isBlocked) {
+      throw new ForbiddenException(
+        await this.i18n.t('errors.chats.user_blocked', {
+          lang,
+          defaultValue: 'No es posible interactuar con este usuario debido a un bloqueo.',
         }),
       );
     }

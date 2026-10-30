@@ -16,6 +16,7 @@ import { CallsModule } from './modules/calls/calls.module';
 import { CoinsModule } from './modules/coins/coins.module';
 import { ChatsModule } from './modules/chats/chats.module';
 import { TranslationsModule } from './modules/translations/translations.module';
+import { ModerationModule } from './modules/moderation/moderation.module';
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
 
@@ -72,6 +73,7 @@ import { AppService } from './app.service';
     CoinsModule,
     ChatsModule,
     TranslationsModule,
+    ModerationModule,
   ],
   controllers: [AppController],
   providers: [

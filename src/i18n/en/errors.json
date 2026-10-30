@@ -40,7 +40,16 @@
     "room_not_found": "Conversation was not found.",
     "message_empty": "Message content cannot be empty.",
     "cannot_chat_with_self": "You cannot start a conversation with yourself.",
-    "unauthorized_access": "You do not have access to this conversation."
+    "unauthorized_access": "You do not have access to this conversation.",
+    "user_blocked": "It is not possible to interact or send messages to this user due to a block."
+  },
+  "moderation": {
+    "missing_user_id": "The x-user-id header is required.",
+    "cannot_block_self": "You cannot block yourself.",
+    "cannot_report_self": "You cannot report yourself.",
+    "user_not_found": "The specified user does not exist.",
+    "already_blocked": "This user is already blocked.",
+    "invalid_target_id": "The user ID provided is not a valid UUID."
   },
   "translations": {
     "message_not_found": "Message to translate was not found.",

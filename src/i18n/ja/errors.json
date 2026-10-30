@@ -40,7 +40,16 @@
     "room_not_found": "チャットが見つかりませんでした。",
     "message_empty": "メッセージ内容は空にできません。",
     "cannot_chat_with_self": "自分自身とチャットを開始することはできません。",
-    "unauthorized_access": "このチャットへのアクセス権がありません。"
+    "unauthorized_access": "このチャットへのアクセス権がありません。",
+    "user_blocked": "ブロックされているため、このユーザーとやり取りしたりメッセージを送信することはできません。"
+  },
+  "moderation": {
+    "missing_user_id": "x-user-id ヘッダーは必須です。",
+    "cannot_block_self": "自分自身をブロックすることはできません。",
+    "cannot_report_self": "自分自身を通報することはできません。",
+    "user_not_found": "指定されたユーザーが存在しません。",
+    "already_blocked": "このユーザーは既にブロックされています。",
+    "invalid_target_id": "指定されたユーザーIDは有効な UUID ではありません。"
   },
   "translations": {
     "message_not_found": "翻訳対象のメッセージが見つかりませんでした。",

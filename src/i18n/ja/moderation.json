@@ -1,0 +1,6 @@
+{
+  "user_blocked_success": "ユーザーを正常にブロックしました。",
+  "user_already_blocked": "このユーザーは既にブロックされています。",
+  "user_unblocked_success": "ユーザーのブロックを正常に解除しました。",
+  "report_submitted_success": "通報が送信されました。モデレーションチームが速やかに確認します。"
+}

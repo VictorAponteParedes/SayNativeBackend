@@ -1,0 +1,6 @@
+{
+  "user_blocked_success": "已成功屏蔽该用户。",
+  "user_already_blocked": "该用户已被屏蔽。",
+  "user_unblocked_success": "已成功解除对该用户的屏蔽。",
+  "report_submitted_success": "举报已成功提交，我们的审核团队将尽快处理。"
+}

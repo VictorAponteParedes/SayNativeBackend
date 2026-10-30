@@ -40,7 +40,16 @@
     "room_not_found": "La conversation n'a pas été trouvée.",
     "message_empty": "Le contenu du message ne peut pas être vide.",
     "cannot_chat_with_self": "Vous ne pouvez pas démarrer une conversation avec vous-même.",
-    "unauthorized_access": "Vous n'avez pas accès à cette conversation."
+    "unauthorized_access": "Vous n'avez pas accès à cette conversation.",
+    "user_blocked": "Impossible d'interagir ou d'envoyer des messages à cet utilisateur en raison d'un blocage."
+  },
+  "moderation": {
+    "missing_user_id": "L'en-tête x-user-id est obligatoire.",
+    "cannot_block_self": "Vous ne pouvez pas vous bloquer vous-même.",
+    "cannot_report_self": "Vous ne pouvez pas vous signaler vous-même.",
+    "user_not_found": "L'utilisateur spécifié n'existe pas.",
+    "already_blocked": "Cet utilisateur est déjà bloqué.",
+    "invalid_target_id": "L'identifiant d'utilisateur fourni n'est pas un UUID valide."
   },
   "translations": {
     "message_not_found": "Le message à traduire est introuvable.",

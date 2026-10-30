@@ -40,7 +40,16 @@
     "room_not_found": "未找到該對話。",
     "message_empty": "訊息內容不能為空。",
     "cannot_chat_with_self": "您不能與自己發起對話。",
-    "unauthorized_access": "您無權訪問此對話。"
+    "unauthorized_access": "您無權訪問此對話。",
+    "user_blocked": "由於存在屏蔽關係，無法與該用戶互動或發送訊息。"
+  },
+  "moderation": {
+    "missing_user_id": "缺少必要的 x-user-id 請求標頭。",
+    "cannot_block_self": "您不能屏蔽自己。",
+    "cannot_report_self": "您不能舉報自己。",
+    "user_not_found": "指定的用戶不存在。",
+    "already_blocked": "該用戶已被屏蔽。",
+    "invalid_target_id": "提供的用戶 ID 不是有效的 UUID。"
   },
   "translations": {
     "message_not_found": "未找到需要翻譯的訊息。",
