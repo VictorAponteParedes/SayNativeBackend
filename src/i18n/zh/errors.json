@@ -41,5 +41,13 @@
     "message_empty": "訊息內容不能為空。",
     "cannot_chat_with_self": "您不能與自己發起對話。",
     "unauthorized_access": "您無權訪問此對話。"
+  },
+  "translations": {
+    "message_not_found": "未找到需要翻譯的訊息。",
+    "cannot_translate_audio": "僅支援翻譯文字訊息。",
+    "service_disabled": "翻譯服務目前已暫停。",
+    "quota_exceeded": "翻譯服務已達到每月免費額度上限。",
+    "translation_failed": "目前無法完成翻譯。",
+    "invalid_target_lang": "提供的目標語言無效。"
   }
 }

@@ -41,5 +41,13 @@
     "message_empty": "メッセージ内容は空にできません。",
     "cannot_chat_with_self": "自分自身とチャットを開始することはできません。",
     "unauthorized_access": "このチャットへのアクセス権がありません。"
+  },
+  "translations": {
+    "message_not_found": "翻訳対象のメッセージが見つかりませんでした。",
+    "cannot_translate_audio": "テキストメッセージのみ翻訳できます。",
+    "service_disabled": "翻訳サービスは現在一時的に停止しています。",
+    "quota_exceeded": "翻訳サービスが無料枠の上限に達しました。",
+    "translation_failed": "現在翻訳を完了できませんでした。",
+    "invalid_target_lang": "指定された翻訳先言語が無効です。"
   }
 }

@@ -41,5 +41,13 @@
     "message_empty": "Le contenu du message ne peut pas être vide.",
     "cannot_chat_with_self": "Vous ne pouvez pas démarrer une conversation avec vous-même.",
     "unauthorized_access": "Vous n'avez pas accès à cette conversation."
+  },
+  "translations": {
+    "message_not_found": "Le message à traduire est introuvable.",
+    "cannot_translate_audio": "Seuls les messages texte peuvent être traduits.",
+    "service_disabled": "Le service de traduction est temporairement désactivé.",
+    "quota_exceeded": "Le service de traduction a atteint la limite mensuelle gratuite.",
+    "translation_failed": "Impossible de terminer la traduction pour le moment.",
+    "invalid_target_lang": "La langue cible fournie est invalide."
   }
 }

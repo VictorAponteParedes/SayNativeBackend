@@ -41,5 +41,13 @@
     "message_empty": "Message content cannot be empty.",
     "cannot_chat_with_self": "You cannot start a conversation with yourself.",
     "unauthorized_access": "You do not have access to this conversation."
+  },
+  "translations": {
+    "message_not_found": "Message to translate was not found.",
+    "cannot_translate_audio": "Only text messages can be translated.",
+    "service_disabled": "Translation service is temporarily disabled.",
+    "quota_exceeded": "Translation service has reached the free monthly limit.",
+    "translation_failed": "Could not complete translation at this time.",
+    "invalid_target_lang": "The provided target language is invalid."
   }
 }
