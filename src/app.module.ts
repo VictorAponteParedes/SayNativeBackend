@@ -44,7 +44,9 @@ import { AppService } from './app.service';
           password: config.get<string>('database.password'),
           database: config.get<string>('database.database'),
           autoLoadEntities: true,
-          synchronize: config.get<boolean>('database.synchronize'),
+          synchronize:
+            process.env.DB_SYNCHRONIZE === 'true' ||
+            process.env.NODE_ENV !== 'production',
           logging: config.get<boolean>('database.logging'),
           ssl: isLocal ? false : { rejectUnauthorized: false },
         };
