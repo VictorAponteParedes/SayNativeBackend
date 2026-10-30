@@ -17,6 +17,14 @@
   "files": {
     "invalid_type": "指定的檔案類型無效。"
   },
+  "auth": {
+    "invalid_credentials": "憑證無效。請檢查您的電子郵件和密碼。",
+    "invalid_refresh_token": "刷新令牌無效或不存在。",
+    "refresh_token_expired": "您的登入已過期，請重新登入。",
+    "refresh_token_revoked": "出於安全原因已撤銷該會話，請重新登入。",
+    "refresh_token_required": "必須提供刷新令牌。",
+    "unauthorized": "未授權。訪問令牌無效或會話已過期。"
+  },
   "coins": {
     "missing_user_id": "缺少 x-user-id 標頭。",
     "invalid_package": "無效的硬幣包識別碼。",

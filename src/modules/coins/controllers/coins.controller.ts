@@ -13,6 +13,8 @@ import { CoinsService } from '../services/coins.service';
 import { RechargeCoinsDto } from '../dto/recharge-coins.dto';
 import { RewardCoinsDto } from '../dto/reward-coins.dto';
 import { CoinTransactionEntity } from '../entities/coin-transaction.entity';
+import { CurrentUser } from '../../../common/decorators/current-user.decorator';
+import { UserEntity } from '../../users/entities/user.entity';
 
 @ApiTags('Monedas y Billetera (Coins)')
 @Controller('coins')
@@ -25,10 +27,12 @@ export class CoinsController {
   @Get('balance')
   @ApiOperation({ summary: 'Obtener el saldo actual de monedas del usuario' })
   async getBalance(
-    @Headers('x-user-id') userId: string,
+    @CurrentUser() user?: UserEntity,
+    @Headers('x-user-id') userId?: string,
     @Headers('accept-language') lang = 'es'
   ): Promise<{ balance: number }> {
-    if (!userId) {
+    const targetUserId = user?.id || userId;
+    if (!targetUserId) {
       throw new BadRequestException(
         await this.i18n.t('errors.coins.missing_user_id', {
           lang,
@@ -36,18 +40,20 @@ export class CoinsController {
         })
       );
     }
-    return await this.coinsService.getBalance(userId, lang);
+    return await this.coinsService.getBalance(targetUserId, lang);
   }
 
   @Get('history')
   @ApiOperation({ summary: 'Obtener el historial de transacciones de monedas' })
   @SwaggerResponse({ status: 200, type: [CoinTransactionEntity] })
   async getHistory(
-    @Headers('x-user-id') userId: string,
+    @CurrentUser() user?: UserEntity,
+    @Headers('x-user-id') userId?: string,
     @Query('limit') limit = 50,
     @Headers('accept-language') lang = 'es'
   ): Promise<CoinTransactionEntity[]> {
-    if (!userId) {
+    const targetUserId = user?.id || userId;
+    if (!targetUserId) {
       throw new BadRequestException(
         await this.i18n.t('errors.coins.missing_user_id', {
           lang,
@@ -56,7 +62,7 @@ export class CoinsController {
       );
     }
     return await this.coinsService.getTransactions(
-      userId,
+      targetUserId,
       Number(limit) || 50,
       lang
     );
@@ -65,11 +71,13 @@ export class CoinsController {
   @Post('recharge')
   @ApiOperation({ summary: 'Recargar monedas mediante compra de paquete' })
   async recharge(
+    @CurrentUser() user: UserEntity,
     @Headers('x-user-id') userId: string,
     @Body() dto: RechargeCoinsDto,
     @Headers('accept-language') lang = 'es'
   ): Promise<{ balance: number; transaction: CoinTransactionEntity; message: string }> {
-    if (!userId) {
+    const targetUserId = user?.id || userId;
+    if (!targetUserId) {
       throw new BadRequestException(
         await this.i18n.t('errors.coins.missing_user_id', {
           lang,
@@ -77,17 +85,19 @@ export class CoinsController {
         })
       );
     }
-    return await this.coinsService.recharge(userId, dto, lang);
+    return await this.coinsService.recharge(targetUserId, dto, lang);
   }
 
   @Post('reward')
   @ApiOperation({ summary: 'Reclamar recompensa por anuncio patrocinado o bono diario' })
   async reward(
+    @CurrentUser() user: UserEntity,
     @Headers('x-user-id') userId: string,
     @Body() dto: RewardCoinsDto,
     @Headers('accept-language') lang = 'es'
   ): Promise<{ balance: number; transaction: CoinTransactionEntity; message: string }> {
-    if (!userId) {
+    const targetUserId = user?.id || userId;
+    if (!targetUserId) {
       throw new BadRequestException(
         await this.i18n.t('errors.coins.missing_user_id', {
           lang,
@@ -95,6 +105,6 @@ export class CoinsController {
         })
       );
     }
-    return await this.coinsService.reward(userId, dto, lang);
+    return await this.coinsService.reward(targetUserId, dto, lang);
   }
 }

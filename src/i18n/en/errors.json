@@ -18,7 +18,12 @@
     "invalid_type": "The specified file type is invalid."
   },
   "auth": {
-    "invalid_credentials": "Invalid credentials. Please check your email and password."
+    "invalid_credentials": "Invalid credentials. Please check your email and password.",
+    "invalid_refresh_token": "The refresh token is invalid or does not exist.",
+    "refresh_token_expired": "Your session has expired. Please log in again.",
+    "refresh_token_revoked": "Session revoked for security reasons. Please log in again.",
+    "refresh_token_required": "Refresh token is required.",
+    "unauthorized": "Unauthorized. Invalid access token or expired session."
   },
   "coins": {
     "missing_user_id": "The x-user-id header is required.",

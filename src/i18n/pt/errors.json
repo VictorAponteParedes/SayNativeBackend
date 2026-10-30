@@ -18,7 +18,12 @@
     "invalid_type": "O tipo de arquivo especificado não é válido."
   },
   "auth": {
-    "invalid_credentials": "Credenciais inválidas. Verifique seu e-mail e senha."
+    "invalid_credentials": "Credenciais inválidas. Verifique seu e-mail e senha.",
+    "invalid_refresh_token": "O token de atualização é inválido ou não existe.",
+    "refresh_token_expired": "Sua sessão expirou. Por favor, faça login novamente.",
+    "refresh_token_revoked": "Sessão revogada por motivos de segurança. Faça login novamente.",
+    "refresh_token_required": "O refresh token é obrigatório.",
+    "unauthorized": "Não autorizado. Token de acesso inválido ou sessão expirada."
   },
   "coins": {
     "missing_user_id": "O cabeçalho x-user-id é obrigatório.",

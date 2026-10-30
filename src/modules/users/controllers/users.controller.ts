@@ -20,12 +20,15 @@ import { UpdateProfileDto } from '../dto/update-profile.dto';
 import { AddLanguageDto } from '../dto/add-language.dto';
 import { UserEntity } from '../entities/user.entity';
 import { UserLanguageEntity } from '../entities/user-language.entity';
+import { Public } from '../../../common/decorators/public.decorator';
+import { CurrentUser } from '../../../common/decorators/current-user.decorator';
 
 @ApiTags('Usuarios (Users)')
 @Controller('users')
 export class UsersController {
   constructor(private readonly usersService: UsersService) {}
 
+  @Public()
   @Post()
   @ApiOperation({ summary: 'Registrar un nuevo usuario' })
   @SwaggerResponse({ status: 201, type: UserEntity })
@@ -40,31 +43,35 @@ export class UsersController {
   @ApiOperation({ summary: 'Listar todos los compañeros disponibles' })
   @SwaggerResponse({ status: 200, type: [UserEntity] })
   async findAll(
+    @CurrentUser() user?: UserEntity,
     @Headers('x-user-id') userId?: string,
   ): Promise<UserEntity[]> {
-    return await this.usersService.findAll(userId);
+    return await this.usersService.findAll(user?.id || userId);
   }
 
   @Get('me')
   @ApiOperation({ summary: 'Obtener mi perfil completo' })
   @SwaggerResponse({ status: 200, type: UserEntity })
   async getMyProfile(
-    @Headers('x-user-id') userId: string,
+    @CurrentUser() user?: UserEntity,
+    @Headers('x-user-id') userId?: string,
     @Headers('accept-language') lang = 'es'
   ): Promise<UserEntity> {
-    // Por ahora usamos el header o parámetro hasta conectar JwtAuthGuard
-    return await this.usersService.findById(userId, lang);
+    const targetId = user?.id || userId;
+    return await this.usersService.findById(targetId!, lang);
   }
 
   @Patch('me')
   @ApiOperation({ summary: 'Actualizar mis datos personales' })
   @SwaggerResponse({ status: 200, type: UserEntity })
   async updateMyProfile(
-    @Headers('x-user-id') userId: string,
-    @Body() updateDto: UpdateProfileDto,
+    @CurrentUser() user?: UserEntity,
+    @Headers('x-user-id') userId?: string,
+    @Body() updateDto?: UpdateProfileDto,
     @Headers('accept-language') lang = 'es'
   ): Promise<UserEntity> {
-    return await this.usersService.updateProfile(userId, updateDto, lang);
+    const targetId = user?.id || userId;
+    return await this.usersService.updateProfile(targetId!, updateDto || {}, lang);
   }
 
   @Post('me/avatar')
@@ -80,6 +87,7 @@ export class UsersController {
   })
   @UseInterceptors(FileInterceptor('file'))
   async uploadAvatar(
+    @CurrentUser() user: UserEntity,
     @Headers('x-user-id') userId: string,
     @UploadedFile(
       new ParseFilePipe({
@@ -91,39 +99,46 @@ export class UsersController {
     file: Express.Multer.File,
     @Headers('accept-language') lang = 'es'
   ): Promise<UserEntity> {
-    return await this.usersService.uploadAndSetAvatar(userId, file, lang);
+    const targetId = user?.id || userId;
+    return await this.usersService.uploadAndSetAvatar(targetId, file, lang);
   }
 
   @Post('me/avatar/:fileId')
   @ApiOperation({ summary: 'Vincular un archivo subido como foto de avatar' })
   @SwaggerResponse({ status: 200, type: UserEntity })
   async updateAvatar(
+    @CurrentUser() user: UserEntity,
     @Headers('x-user-id') userId: string,
     @Param('fileId', ParseUUIDPipe) fileId: string,
     @Headers('accept-language') lang = 'es'
   ): Promise<UserEntity> {
-    return await this.usersService.updateAvatar(userId, fileId, lang);
+    const targetId = user?.id || userId;
+    return await this.usersService.updateAvatar(targetId, fileId, lang);
   }
 
   @Post('me/languages')
   @ApiOperation({ summary: 'Agregar un idioma al perfil (Nativo o en Aprendizaje)' })
   @SwaggerResponse({ status: 201, type: UserLanguageEntity })
   async addLanguage(
+    @CurrentUser() user: UserEntity,
     @Headers('x-user-id') userId: string,
     @Body() addLanguageDto: AddLanguageDto,
     @Headers('accept-language') lang = 'es'
   ): Promise<UserLanguageEntity> {
-    return await this.usersService.addLanguage(userId, addLanguageDto, lang);
+    const targetId = user?.id || userId;
+    return await this.usersService.addLanguage(targetId, addLanguageDto, lang);
   }
 
   @Patch('me/teaching-mode')
   @ApiOperation({ summary: 'Activar o pausar el Modo Enseñar para recibir llamadas' })
   async toggleTeachingMode(
+    @CurrentUser() user: UserEntity,
     @Headers('x-user-id') userId: string,
     @Body('isAvailable') isAvailable: boolean,
     @Headers('accept-language') lang = 'es'
   ): Promise<UserEntity> {
-    return await this.usersService.toggleTeachingMode(userId, isAvailable, lang);
+    const targetId = user?.id || userId;
+    return await this.usersService.toggleTeachingMode(targetId, isAvailable, lang);
   }
 
   @Get(':id')

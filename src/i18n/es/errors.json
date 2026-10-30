@@ -18,7 +18,12 @@
     "invalid_type": "El tipo de archivo especificado no es válido."
   },
   "auth": {
-    "invalid_credentials": "Credenciales inválidas. Verifica tu correo y contraseña."
+    "invalid_credentials": "Credenciales inválidas. Verifica tu correo y contraseña.",
+    "invalid_refresh_token": "El token de actualización es inválido o no existe.",
+    "refresh_token_expired": "Tu sesión ha expirado. Por favor inicia sesión nuevamente.",
+    "refresh_token_revoked": "Sesión revocada por motivos de seguridad. Inicia sesión nuevamente.",
+    "refresh_token_required": "El refresh token es obligatorio.",
+    "unauthorized": "No autorizado. Token de acceso inválido o sesión expirada."
   },
   "calls": {
     "user_busy": "El usuario se encuentra actualmente en otra llamada.",

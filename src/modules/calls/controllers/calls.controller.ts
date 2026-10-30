@@ -9,12 +9,14 @@ import {
 import { ApiTags, ApiOperation, ApiResponse } from '@nestjs/swagger';
 import { CallsService } from '../services/calls.service';
 import { CallSessionResponseDto } from '../dto/call-session-response.dto';
+import { Public } from '../../../common/decorators/public.decorator';
 
 @ApiTags('calls')
 @Controller('calls')
 export class CallsController {
   constructor(private readonly callsService: CallsService) {}
 
+  @Public()
   @Get('ice-servers')
   @ApiOperation({ summary: 'Obtiene la lista de servidores STUN/TURN' })
   getIceServers() {

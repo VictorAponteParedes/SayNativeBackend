@@ -1,4 +1,5 @@
 import { Module } from '@nestjs/common';
+import { APP_GUARD } from '@nestjs/core';
 import { ConfigModule, ConfigService } from '@nestjs/config';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { EventEmitterModule } from '@nestjs/event-emitter';
@@ -10,6 +11,8 @@ import {
 import * as path from 'path';
 
 import { databaseConfig } from './config/database.config';
+import { jwtConfig } from './config/jwt.config';
+import { JwtAuthGuard } from './common/guards/jwt-auth.guard';
 import { FilesModule } from './modules/files/files.module';
 import { UsersModule } from './modules/users/users.module';
 import { AuthModule } from './modules/auth/auth.module';
@@ -24,7 +27,7 @@ import { AppService } from './app.service';
     // Variables de entorno globales
     ConfigModule.forRoot({
       isGlobal: true,
-      load: [databaseConfig],
+      load: [databaseConfig, jwtConfig],
     }),
 
     // Eventos desacoplados en memoria
@@ -68,6 +71,12 @@ import { AppService } from './app.service';
     ChatsModule,
   ],
   controllers: [AppController],
-  providers: [AppService],
+  providers: [
+    AppService,
+    {
+      provide: APP_GUARD,
+      useClass: JwtAuthGuard,
+    },
+  ],
 })
 export class AppModule {}

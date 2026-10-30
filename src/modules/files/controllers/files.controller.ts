@@ -17,6 +17,7 @@ import type { Response } from 'express';
 import { FilesService } from '../services/files.service';
 import { UploadFileDto } from '../dto/upload-file.dto';
 import { FileEntity } from '../entities/file.entity';
+import { Public } from '../../../common/decorators/public.decorator';
 
 @ApiTags('Archivos (Files)')
 @Controller('files')
@@ -59,6 +60,7 @@ export class FilesController {
     );
   }
 
+  @Public()
   @Get(':fileName')
   @ApiOperation({ summary: 'Obtener y visualizar un archivo por su nombre' })
   async getFile(

@@ -18,7 +18,12 @@
     "invalid_type": "指定されたファイルタイプは無効です。"
   },
   "auth": {
-    "invalid_credentials": "認証に失敗しました。メールアドレスとパスワードをご確認ください。"
+    "invalid_credentials": "認証に失敗しました。メールアドレスとパスワードをご確認ください。",
+    "invalid_refresh_token": "リフレッシュトークンが無効であるか、存在しません。",
+    "refresh_token_expired": "セッションの有効期限が切れました。再度ログインしてください。",
+    "refresh_token_revoked": "セキュリティ上の理由によりセッションが無効化されました。再度ログインしてください。",
+    "refresh_token_required": "リフレッシュトークンは必須です。",
+    "unauthorized": "認証されていません。アクセストークンが無効か期限切れです。"
   },
   "coins": {
     "missing_user_id": "x-user-id ヘッダーが必要です。",

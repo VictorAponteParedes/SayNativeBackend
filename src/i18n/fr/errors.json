@@ -18,7 +18,12 @@
     "invalid_type": "Le type de fichier spécifié n'est pas valide."
   },
   "auth": {
-    "invalid_credentials": "Identifiants invalides. Veuillez vérifier votre adresse e-mail et mot de passe."
+    "invalid_credentials": "Identifiants invalides. Veuillez vérifier votre adresse e-mail et mot de passe.",
+    "invalid_refresh_token": "Le jeton d'actualisation est invalide ou n'existe pas.",
+    "refresh_token_expired": "Votre session a expiré. Veuillez vous reconnecter.",
+    "refresh_token_revoked": "Session révoquée pour des raisons de sécurité. Veuillez vous reconnecter.",
+    "refresh_token_required": "Le refresh token est requis.",
+    "unauthorized": "Non autorisé. Jeton d'accès invalide ou session expirée."
   },
   "coins": {
     "missing_user_id": "L'en-tête x-user-id est requis.",

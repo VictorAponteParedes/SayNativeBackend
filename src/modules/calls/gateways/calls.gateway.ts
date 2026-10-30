@@ -96,7 +96,10 @@ export class CallsGateway implements OnGatewayConnection, OnGatewayDisconnect {
     } | null = null;
 
     for (const [waitingId, candidate] of this.waitingRoom.entries()) {
-      if (waitingId !== data.userId) {
+      const isDiffUser = waitingId !== data.userId;
+      const isDiffSocket = candidate.socketId !== client.id;
+      // Permitir matching si es usuario distinto, o si son dos dispositivos/sockets distintos en desarrollo
+      if (isDiffUser || isDiffSocket) {
         matchedPartner = candidate;
         break;
       }
@@ -239,19 +242,24 @@ export class CallsGateway implements OnGatewayConnection, OnGatewayDisconnect {
   @SubscribeMessage('call:signal')
   handleSignal(
     @ConnectedSocket() client: Socket,
-    @MessageBody() data: SignalingDto,
+    @MessageBody() data: SignalingDto & { senderSocketId?: string },
   ) {
     this.logger.log(
-      `Retransmitiendo señal SDP (${data.signal?.type}) para llamada: ${data.callId}`,
+      `Retransmitiendo señal SDP (${data.signal?.type}) para llamada: ${data.callId} desde socket ${client.id}`,
     );
+    data.senderSocketId = client.id;
     client.broadcast.emit('call:signal', data);
   }
 
   @SubscribeMessage('call:ice-candidate')
   handleIceCandidate(
     @ConnectedSocket() client: Socket,
-    @MessageBody() data: IceCandidateDto,
+    @MessageBody() data: IceCandidateDto & { senderSocketId?: string },
   ) {
+    this.logger.log(
+      `Retransmitiendo candidato ICE para llamada: ${data.callId} desde socket ${client.id}`,
+    );
+    data.senderSocketId = client.id;
     client.broadcast.emit('call:ice-candidate', data);
   }
 
