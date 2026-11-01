@@ -34,6 +34,8 @@ export class CallsGateway implements OnGatewayConnection, OnGatewayDisconnect {
       avatarUrl?: string;
       countryFlag?: string;
       ratePerMinute: number;
+      rating?: number;
+      minRating?: number;
     }
   >();
 
@@ -75,6 +77,8 @@ export class CallsGateway implements OnGatewayConnection, OnGatewayDisconnect {
       avatarUrl?: string;
       countryFlag?: string;
       ratePerMinute?: number;
+      rating?: number;
+      minRating?: number;
     },
   ) {
     if (!data?.userId) return;
@@ -83,7 +87,7 @@ export class CallsGateway implements OnGatewayConnection, OnGatewayDisconnect {
     this.socketUsers.set(client.id, data.userId);
 
     this.logger.log(
-      `Usuario ${data.name || data.userId} entró a la sala de espera`,
+      `Usuario ${data.name || data.userId} entró a la sala de espera (rating: ${data.rating ?? 5.0})`,
     );
 
     let matchedPartner: {
@@ -93,13 +97,28 @@ export class CallsGateway implements OnGatewayConnection, OnGatewayDisconnect {
       avatarUrl?: string;
       countryFlag?: string;
       ratePerMinute: number;
+      rating?: number;
+      minRating?: number;
     } | null = null;
+
+    const myRating = Number(data.rating ?? 5.0);
+    const myMinRating = Number(data.minRating ?? 0);
 
     for (const [waitingId, candidate] of this.waitingRoom.entries()) {
       const isDiffUser = waitingId !== data.userId;
       const isDiffSocket = candidate.socketId !== client.id;
-      // Permitir matching si es usuario distinto, o si son dos dispositivos/sockets distintos en desarrollo
       if (isDiffUser || isDiffSocket) {
+        // Validar filtros de reputación mutuos si están activos (>0)
+        const candidateRating = Number(candidate.rating ?? 5.0);
+        const candidateMinRating = Number(candidate.minRating ?? 0);
+
+        if (myMinRating > 0 && candidateRating < myMinRating) {
+          continue;
+        }
+        if (candidateMinRating > 0 && myRating < candidateMinRating) {
+          continue;
+        }
+
         matchedPartner = candidate;
         break;
       }
@@ -121,6 +140,7 @@ export class CallsGateway implements OnGatewayConnection, OnGatewayDisconnect {
           avatarUrl: matchedPartner.avatarUrl,
           countryFlag: matchedPartner.countryFlag,
           ratePerMinute: matchedPartner.ratePerMinute,
+          rating: matchedPartner.rating ?? 5.0,
         },
         role: 'caller',
       });
@@ -133,6 +153,7 @@ export class CallsGateway implements OnGatewayConnection, OnGatewayDisconnect {
           avatarUrl: data.avatarUrl,
           countryFlag: data.countryFlag,
           ratePerMinute: data.ratePerMinute || 10,
+          rating: myRating,
         },
         role: 'callee',
       });
@@ -144,6 +165,8 @@ export class CallsGateway implements OnGatewayConnection, OnGatewayDisconnect {
         avatarUrl: data.avatarUrl,
         countryFlag: data.countryFlag,
         ratePerMinute: data.ratePerMinute || 10,
+        rating: myRating,
+        minRating: myMinRating,
       });
       client.emit('call:lobby:waiting');
       this.logger.log(
@@ -173,6 +196,7 @@ export class CallsGateway implements OnGatewayConnection, OnGatewayDisconnect {
       callerId: string;
       callerName?: string;
       callerAvatar?: string;
+      callerRating?: number;
       receiverId: string;
       callType?: 'video' | 'audio';
       ratePerMinute?: number;
@@ -196,7 +220,7 @@ export class CallsGateway implements OnGatewayConnection, OnGatewayDisconnect {
       client.emit('call:ringing', { callId: session.id });
 
       if (receiverSocketId) {
-        // Enviar evento de llamada entrante al receptor
+        // Enviar evento de llamada entrante al receptor con rating del caller
         this.server.to(receiverSocketId).emit('call:incoming', {
           callId: session.id,
           caller: {
@@ -204,6 +228,7 @@ export class CallsGateway implements OnGatewayConnection, OnGatewayDisconnect {
             name: data.callerName || 'Compañero',
             avatarUrl: data.callerAvatar,
             ratePerMinute: session.ratePerMinute,
+            rating: data.callerRating ?? 5.0,
           },
           callType: session.callType,
           ratePerMinute: session.ratePerMinute,
