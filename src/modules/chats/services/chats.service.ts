@@ -302,6 +302,9 @@ export class ChatsService {
       );
     }
 
+    // Marcar como leídos los mensajes no leídos al abrir la sala
+    await this.markRoomAsRead(roomId, userId, lang);
+
     return await this.messageRepository.find({
       where: { roomId },
       relations: { sender: { avatar: true } },
@@ -415,14 +418,21 @@ export class ChatsService {
     }
     await this.roomRepository.save(room);
 
+    const readAt = new Date();
     await this.messageRepository
       .createQueryBuilder()
       .update(ChatMessageEntity)
-      .set({ isRead: true, readAt: new Date() })
+      .set({ isRead: true, readAt })
       .where('roomId = :roomId AND senderId != :userId AND isRead = false', {
         roomId,
         userId,
       })
       .execute();
+
+    this.eventEmitter.emit('chat.messages_read', {
+      roomId,
+      readBy: userId,
+      readAt,
+    });
   }
 }

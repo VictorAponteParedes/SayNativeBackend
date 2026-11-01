@@ -128,4 +128,23 @@ export class ChatsGateway implements OnGatewayConnection, OnGatewayDisconnect {
         .emit('partner_typing', { userId: data.userId, isTyping: data.isTyping });
     }
   }
+
+  @SubscribeMessage('mark_as_read')
+  async handleMarkAsRead(
+    @ConnectedSocket() client: Socket,
+    @MessageBody() data: { roomId: string; userId: string; lang?: string }
+  ) {
+    if (data?.roomId && data?.userId) {
+      await this.chatsService.markRoomAsRead(
+        data.roomId,
+        data.userId,
+        data.lang || 'es'
+      );
+    }
+  }
+
+  @OnEvent('chat.messages_read')
+  handleMessagesRead(payload: { roomId: string; readBy: string; readAt: Date }) {
+    this.server.to(`room_${payload.roomId}`).emit('messages_read', payload);
+  }
 }
