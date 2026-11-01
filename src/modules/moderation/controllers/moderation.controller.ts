@@ -15,9 +15,11 @@ import { ModerationService } from '../services/moderation.service';
 import { BlockUserDto } from '../dto/block-user.dto';
 import { ReportUserDto } from '../dto/report-user.dto';
 import { CurrentUser } from '../../../common/decorators/current-user.decorator';
+import { Public } from '../../../common/decorators/public.decorator';
 import { UserEntity } from '../../users/entities/user.entity';
 
 @ApiTags('Moderación y Seguridad (Moderation)')
+@Public()
 @Controller('moderation')
 export class ModerationController {
   constructor(
